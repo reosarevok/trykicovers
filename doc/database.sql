@@ -37,6 +37,7 @@ CREATE TABLE cover_image (
   image_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   cover_id INT UNSIGNED NOT NULL,
   image_uuid VARCHAR(36) NOT NULL,
+  image_file_type VARCHAR(10) NOT NULL,
   CONSTRAINT fk_cover_2 FOREIGN KEY (cover_id)
   REFERENCES cover(cover_id));
 

@@ -1,26 +1,28 @@
 <?php
 require_once "database.php";
-print_r($_POST);
 
-if(!isset($_FILES['userfile']))
+if(!isset($_FILES['cover_image']))
 {
     echo '<p>Please select a file</p>';
 }
 else
 {
     try    {
-        upload();
-        /*** give praise and thanks to the php gods ***/
-        echo '<p>Thank you for submitting</p>';
-
-        IF (!empty($_POST)) {
+        if (!empty($_POST)) {
             $new_id = add_cover($_POST["title"], $_POST["author"], 1, $_POST["shelf"]);
-            foreach ($_POST["tags"] as $tag) {
+            $tags = explode(",", $_POST["tags"]);
+            foreach ($tags as $tag) {
                 add_tag_to_cover($tag, $new_id);
             }
-            add_cover_image($_POST["image"], $new_id);
-            $new_book = get_first("SELECT * FROM book WHERE book_id = $new_id");
-            print_r($new_book);
+            $imageFileType = pathinfo($_FILES['cover_image']['name'],PATHINFO_EXTENSION);
+            $uuid = add_cover_image($new_id, $imageFileType);
+            upload_file($uuid);
+
+            echo "Upload succesful! See the <a href='../cover.php?id=$new_id'>newly uploaded cover</a> or
+                <a href='../admin.php'>upload more covers</a>";
+        }
+        else {
+            echo '<h4>Please add some data</h4>';
         }
     }
     catch(Exception $e)
@@ -29,3 +31,13 @@ else
     }
 }
 
+function upload_file($uuid) {
+    if(is_uploaded_file($_FILES['cover_image']['tmp_name']) && getimagesize($_FILES['cover_image']['tmp_name']) != false)
+    {
+        $imageFileType = pathinfo($_FILES['cover_image']['name'],PATHINFO_EXTENSION);
+        $image_dir = dirname(getcwd()).'/static/images';
+
+        move_uploaded_file($_FILES['cover_image']['tmp_name'], "$image_dir/$uuid.$imageFileType");
+        return "$uuid.$imageFileType";
+    }
+};

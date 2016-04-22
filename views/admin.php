@@ -5,6 +5,7 @@
         <h2>Add cover</h2>
         <form enctype="multipart/form-data" action="system/insert.php" method="post">
             <div class="form-group">
+                <input type="hidden" name="MAX_FILE_SIZE" value="100000000" />
                 <label for="cover_image">Cover</label>
                 <input class="form-control" name="cover_image" id="cover_image" type="file" />
             </div>

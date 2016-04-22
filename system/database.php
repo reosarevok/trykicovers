@@ -28,28 +28,23 @@ function add_cover($title, $author, $amount, $shelf)
     mysqli_query($db, "INSERT INTO cover (title, author, amount, shelf_id) VALUES ('$title', '$author', $amount, $shelf)") or exit(mysqli_error($db));
     return mysqli_insert_id($db);
 }
-function add_tag($tag)
+function add_tag($tag, $tag_type)
 {
     global $db;
     $tag = mysqli_real_escape_string($db, $tag);
-    mysqli_query($db, "INSERT INTO tag (tag) VALUES ('$tag')") or exit(mysqli_error($db));
+    mysqli_query($db, "INSERT INTO tag (tag, tag_type_id) VALUES ('$tag', $tag_type)") or exit(mysqli_error($db));
     return mysqli_insert_id($db);
 }
 function add_tag_to_cover($tag, $cover)
 {
     global $db;
-    $tag = mysqli_real_escape_string($db, $tag);
-    $tag_id = get_first("SELECT tag_id FROM tag WHERE tag = '$tag'");
-    if (empty($tag_id)) {
-        $tag_id = add_tag($tag);
-    }
-    mysqli_query($db, "INSERT INTO cover_tag (cover_id, tag_id) VALUES ($cover, $tag_id)") or exit(mysqli_error($db));
+    mysqli_query($db, "INSERT INTO cover_tag (cover_id, tag_id) VALUES ($cover, $tag)") or exit(mysqli_error($db));
     return mysqli_insert_id($db);
 }
-function add_cover_image($image, $cover) {
-    if(is_uploaded_file($_FILES['cover_image']['tmp_name']) && getimagesize($_FILES['cover_image']['tmp_name']) != false)
-    {
-
-    }
-
+function add_cover_image($cover, $file_type) {
+    global $db;
+    mysqli_query($db, "INSERT INTO cover_image (cover_id, image_uuid, image_file_type) VALUES ($cover, uuid(), '$file_type')") or exit(mysqli_error($db));
+    $id = mysqli_insert_id($db);
+    $uuid = get_first("SELECT image_uuid FROM cover_image WHERE image_id = $id");
+    return $uuid['image_uuid'];
 }

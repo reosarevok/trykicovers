@@ -11,6 +11,10 @@ footer {
     padding: 10px;
 }
 
+#tags > ul {
+    list-style-type: none;
+}
+
 .twitter-typeahead .tt-query,
 .twitter-typeahead .tt-hint {
     margin-bottom: 0;
