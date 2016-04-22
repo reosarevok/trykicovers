@@ -15,6 +15,9 @@ footer {
     list-style-type: none;
 }
 
+.small-image {
+    max-height: 300px;
+}
 .twitter-typeahead .tt-query,
 .twitter-typeahead .tt-hint {
     margin-bottom: 0;

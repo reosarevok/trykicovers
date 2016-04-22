@@ -11,7 +11,7 @@
         <?php endif; ?>
 
         <?php $source = 'static/images/' . $cover['image_uuid'] . '.' . $cover['image_file_type']; ?>
-        <img class="center-block" src="<?= $source ?>" />
+        <img class="center-block small-image" id="cover_image" src="<?= $source ?>" />
 
         <div class="text-center" id="tags">
             <h4>Tags</h4>
@@ -23,3 +23,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+       $('#cover_image').click(function() {
+          $(this).toggleClass("small-image");
+       });
+    });
+</script>
