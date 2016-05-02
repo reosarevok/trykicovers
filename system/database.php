@@ -48,3 +48,16 @@ function add_cover_image($cover, $file_type) {
     $uuid = get_first("SELECT image_uuid FROM cover_image WHERE image_id = $id");
     return $uuid['image_uuid'];
 }
+function display_cover($cover_id) {
+
+    $cover = get_first("SELECT * FROM cover JOIN cover_image USING (cover_id) JOIN shelf USING (shelf_id)
+      WHERE cover_id = $cover_id");
+    $source = 'static/images/' . $cover['image_uuid'] . '.' . $cover['image_file_type'];
+    if (!empty($cover)) {
+        echo "<a href='cover.php?id=$cover_id' target='_blank'><img class='center-block small-image cover' src='$source'/></a><br>";
+    }
+    else {
+        echo "<a href='cover.php?id=$cover_id'>Image not found</a><br>";
+    }
+
+}

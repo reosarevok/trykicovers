@@ -10,7 +10,7 @@ else
     try    {
         if (!empty($_POST)) {
             $new_id = add_cover($_POST["title"], $_POST["author"], 1, $_POST["shelf"]);
-            $tags = explode(",", $_POST["tags"]);
+            $tags = $_POST["tag"];
             foreach ($tags as $tag) {
                 add_tag_to_cover($tag, $new_id);
             }

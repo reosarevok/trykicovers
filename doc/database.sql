@@ -68,3 +68,10 @@ INSERT INTO tag (tag, tag_type_id) VALUES
   ("Science", 6), ("Space", 6), ("Sea", 6), ("Food", 6), ("Animals", 6), ("Plants", 6), ("Nature", 6),
   ("Travel", 6), ("War", 6), ("Children", 6), ("Vintage", 6), ("Famous Writers", 6), ("Pattern", 6),
   ("Symbol", 6), ("Blank", 6), ("Sport", 6), ("Business, Law and Economics", 6), ("Psychology", 6), ("Heart", 6);
+
+INSERT INTO shelf (shelf) VALUES
+  ("A1"), ("A2"), ("A3"), ("A4"),
+  ("B1"), ("B2"), ("B3"), ("B4"),
+  ("C1"), ("C2"), ("C3"), ("C4"),
+  ("D1"), ("D2"), ("D3"), ("D4"),
+  ("E1"), ("E2"), ("E3"), ("E4");

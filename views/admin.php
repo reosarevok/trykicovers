@@ -25,9 +25,57 @@
                     <?php endforeach; ?>
                 </select>
             </div>
+            <fieldset class="form-group">
+                <legend class="checkbox-head">For which products?</legend>
+                <div class="checkboxes">
+                    <?php foreach ($products as $product): ?>
+                        <div class="checkbox-inline">
+                            <input type="checkbox" name="tag[]" id="<?= $product['tag'] ?>" value="<?= $product['tag_id'] ?>">
+                            <label for="<?= $product['tag'] ?>"><?= $product['tag'] ?></label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <legend class="checkbox-head">In which sizes?</legend>
+                <div class="checkboxes">
+                    <?php foreach ($measures as $measure): ?>
+                        <div class="checkbox-inline">
+                            <input type="checkbox" name="tag[]" id="<?= $measure['tag'] ?>" value="<?= $measure['tag_id'] ?>">
+                            <label for="<?= $measure['tag'] ?>"><?= $measure['tag'] ?></label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <legend class="checkbox-head">In which language?</legend>
+                <div class="checkboxes">
+                    <?php foreach ($languages as $language): ?>
+                        <div class="checkbox-inline">
+                            <input type="checkbox" name="tag[]" id="<?= $language['tag'] ?>" value="<?= $language['tag_id'] ?>">
+                            <label for="<?= $language['tag'] ?>"><?= $language['tag'] ?></label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <legend class="checkbox-head">From what material?</legend>
+                <div class="checkboxes">
+                    <?php foreach ($materials as $material): ?>
+                        <div class="checkbox-inline">
+                            <input type="checkbox" name="tag[]" id="<?= $material['tag'] ?>" value="<?= $material['tag_id'] ?>">
+                            <label for="<?= $material['tag'] ?>"><?= $material['tag'] ?></label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </fieldset>
             <div class="form-group">
-                <label for="tags">Tags:</label>
-                <input type="text" data-role="tagsinput" name="tags" id="tags" />
+                <label for="colors">Colors:</label>
+                <select multiple data-role="tagsinput" name="tag[]" id="colors"></select>
+            </div>
+            <div class="form-group">
+                <label for="themes">Themes:</label>
+                <select multiple data-role="tagsinput" name="tag[]" id="themes"></select>
             </div>
             <button type="submit" class="btn btn-default">Enter</button>
         </form>
@@ -42,33 +90,44 @@
             }
         });
     });
-    var tags = new Bloodhound({
+
+    /* tags-input */
+    var themes = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('tag'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: <?= json_encode($tags) ?>
+        local: <?= json_encode($themes) ?>
     });
-    tags.initialize();
+    themes.initialize();
 
-    $('#tags').tagsinput({
-        tagClass: function(item) {
-            switch (item.tag_type) {
-                case 'Colors'   : return 'label label-primary';
-                case 'Materials': return 'label label-danger label-important';
-                case 'Themes'   : return 'label label-success';
-                case 'Products' : return 'label label-default';
-                case 'Measures' : return 'label label-warning';
-                case 'Languages': return 'label label-info';
-            }
-        },
+    $('#themes').tagsinput({
         confirmKeys: [13, 188],
         itemValue: 'tag_id',
         itemText: 'tag',
         typeaheadjs: [{
             hint: false
         },{
-            name: 'tags',
+            name: 'themes',
             displayKey: 'tag',
-            source: tags.ttAdapter()
+            source: themes.ttAdapter()
+        }]
+    });
+    var colors = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('tag'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: <?= json_encode($colors) ?>
+    });
+    themes.initialize();
+
+    $('#colors').tagsinput({
+        confirmKeys: [13, 188],
+        itemValue: 'tag_id',
+        itemText: 'tag',
+        typeaheadjs: [{
+            hint: false
+        },{
+            name: 'colors',
+            displayKey: 'tag',
+            source: colors.ttAdapter()
         }]
     });
 

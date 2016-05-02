@@ -1,23 +1,10 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT']."/trykicovers/system/database.php";
 
-if (!empty($_GET["mainsearch"]))
-{
-    $mainsearch = $_GET["mainsearch"];
-    $searchdrop = $_GET["searchdrop"];
+$colors = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 1");
+$languages = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 2");
+$products = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 3");
+$materials = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 4");
+$measures = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 5");
+$themes = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 6");
 
-//Connect to database
-    $db = mysqli_connect('127.0.0.1', 'root', '', 'filmibaas') or die(mysqli_error($db));
-    mysqli_query($db, "SET NAMES 'utf8'");
-
-//otsing
-
-    $books = get_all("SELECT *
-                   FROM book
-                   JOIN author USING (author_id)
-                   WHERE book.title LIKE '%$mainsearch%'");
-
-
-//test et array prindib
-//print_r($film);
-}
