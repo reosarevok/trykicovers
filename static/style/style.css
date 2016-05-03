@@ -18,6 +18,7 @@ footer {
 .small-image {
     max-height: 300px;
 }
+
 .twitter-typeahead .tt-query,
 .twitter-typeahead .tt-hint {
     margin-bottom: 0;
@@ -65,4 +66,24 @@ footer {
 }
 .tt-suggestion p {
     margin: 0;
+}
+
+@media (min-width: 768px) {
+    .navbar {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+
+    .navbar .navbar-collapse li {
+        padding: 0 20px;
+    }
 }
