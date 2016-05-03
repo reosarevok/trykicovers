@@ -11,13 +11,13 @@
         <?php endif; ?>
 
         <?php $source = 'static/images/' . $cover['image_uuid'] . '.' . $cover['image_file_type']; ?>
-        <img class="center-block small-image" id="cover_image" src="<?= $source ?>" />
+        <img class="center-block small-image cover_image" src="<?= $source ?>" />
 
         <div class="text-center" id="tags">
             <h4>Tags</h4>
             <ul class="list-group">
                 <?php foreach ($tags as $tag): ?>
-                    <li class="list-group-item col-xs-6 col-sm-3"> <?= $tag['tag'] ?> </li>
+                    <li class="list-group-item col-xs-6 col-sm-3"> <a href="tag.php?id=<?= $tag['tag_id'] ?>"><?= $tag['tag'] ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>
@@ -26,7 +26,7 @@
 
 <script>
     $(document).ready(function() {
-       $('#cover_image').click(function() {
+       $('.cover_image').click(function() {
           $(this).toggleClass("small-image");
        });
     });

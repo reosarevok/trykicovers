@@ -54,7 +54,7 @@ function display_cover($cover_id) {
       WHERE cover_id = $cover_id");
     $source = 'static/images/' . $cover['image_uuid'] . '.' . $cover['image_file_type'];
     if (!empty($cover)) {
-        echo "<a href='cover.php?id=$cover_id' target='_blank'><img class='center-block small-image cover' src='$source'/></a><br>";
+        echo "<a href='cover.php?id=$cover_id' target='_blank'><img class='center-block small-image cover-image' src='$source'/></a><br>";
     }
     else {
         echo "<a href='cover.php?id=$cover_id'>Image not found</a><br>";
