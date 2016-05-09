@@ -20,12 +20,12 @@ function get_first($sql)
     $result = mysqli_fetch_assoc($query_result);
     return empty($result) ? array() : $result;
 }
-function add_cover($title, $author, $amount, $shelf)
+function add_cover($title, $translation, $author, $amount, $shelf)
 {
     global $db;
     $title = mysqli_real_escape_string($db, $title);
     $author = mysqli_real_escape_string($db, $author);
-    mysqli_query($db, "INSERT INTO cover (title, author, amount, shelf_id) VALUES ('$title', '$author', $amount, $shelf)") or exit(mysqli_error($db));
+    mysqli_query($db, "INSERT INTO cover (title, translated_title, author, amount, shelf_id) VALUES ('$title', '$translation', '$author', $amount, $shelf)") or exit(mysqli_error($db));
     return mysqli_insert_id($db);
 }
 function add_tag($tag, $tag_type)

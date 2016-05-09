@@ -2,12 +2,14 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <?php if ((!empty($cover['title'])) && (!empty($cover['author']))): ?>
+        <?php if (!empty($cover['author'])): ?>
             <h3 class="text-center"><?= $cover['title'] . ' by ' . $cover['author'] ?></h3>
-        <?php elseif (!empty($cover['title'])): ?>
-            <h3 class="text-center"><?= $cover['title'] ?></h3>
         <?php else: ?>
-            <h3 class="text-center">Cover</h3>
+            <h3 class="text-center"><?= $cover['title'] ?></h3>
+        <?php endif; ?>
+
+        <?php if (!empty($cover['translated_title'])): ?>
+            <h4 class="text-center">(<?= $cover['translated_title'] ?>)</h4>
         <?php endif; ?>
 
         <?php $source = 'static/images/' . $cover['image_uuid'] . '.' . $cover['image_file_type']; ?>
