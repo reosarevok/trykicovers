@@ -13,6 +13,10 @@
         <?php $source = 'static/images/' . $cover['image_uuid'] . '.' . $cover['image_file_type']; ?>
         <img class="center-block small-image cover_image" src="<?= $source ?>" />
 
+        <div class="text-center" id="shelf">
+            <h4>We have <?= $cover['amount'] ?> on shelf <?= $cover['shelf'] ?></h4>
+        </div>
+
         <div class="text-center" id="tags">
             <h4>Tags</h4>
             <ul class="list-group">
