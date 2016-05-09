@@ -30,7 +30,7 @@
                 <div class="checkboxes">
                     <?php foreach ($products as $product): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="tag[]" id="<?= $product['tag'] ?>" value="<?= $product['tag_id'] ?>">
+                            <input type="checkbox" name="products[]" id="<?= $product['tag'] ?>" value="<?= $product['tag_id'] ?>">
                             <label for="<?= $product['tag'] ?>"><?= $product['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -41,7 +41,7 @@
                 <div class="checkboxes">
                     <?php foreach ($measures as $measure): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="tag[]" id="<?= $measure['tag'] ?>" value="<?= $measure['tag_id'] ?>">
+                            <input type="checkbox" name="measures[]" id="<?= $measure['tag'] ?>" value="<?= $measure['tag_id'] ?>">
                             <label for="<?= $measure['tag'] ?>"><?= $measure['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -52,7 +52,7 @@
                 <div class="checkboxes">
                     <?php foreach ($languages as $language): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="tag[]" id="<?= $language['tag'] ?>" value="<?= $language['tag_id'] ?>">
+                            <input type="checkbox" name="languages[]" id="<?= $language['tag'] ?>" value="<?= $language['tag_id'] ?>">
                             <label for="<?= $language['tag'] ?>"><?= $language['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -63,7 +63,7 @@
                 <div class="checkboxes">
                     <?php foreach ($materials as $material): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="tag[]" id="<?= $material['tag'] ?>" value="<?= $material['tag_id'] ?>">
+                            <input type="checkbox" name="materials[]" id="<?= $material['tag'] ?>" value="<?= $material['tag_id'] ?>">
                             <label for="<?= $material['tag'] ?>"><?= $material['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -71,11 +71,11 @@
             </fieldset>
             <div class="form-group">
                 <label for="colors">Colors:</label>
-                <select multiple data-role="tagsinput" name="tag[]" id="colors"></select>
+                <select multiple data-role="tagsinput" name="colors[]" id="colors"></select>
             </div>
             <div class="form-group">
                 <label for="themes">Themes:</label>
-                <select multiple data-role="tagsinput" name="tag[]" id="themes"></select>
+                <select multiple data-role="tagsinput" name="themes[]" id="themes"></select>
             </div>
             <button type="submit" class="btn btn-default">Enter</button>
         </form>
