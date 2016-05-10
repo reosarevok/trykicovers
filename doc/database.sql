@@ -2,13 +2,15 @@
 
 CREATE TABLE shelf (
   shelf_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  shelf CHAR(2) NOT NULL);
+  shelf CHAR(2) NOT NULL,
+  shelf_size INT UNSIGNED NOT NULL);
 
 CREATE TABLE cover (
   cover_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   translated_title VARCHAR(255),
   author VARCHAR(255),
+  comment VARCHAR(255),
   amount INT UNSIGNED NOT NULL,
   shelf_id INT UNSIGNED NOT NULL,
   CONSTRAINT fk_shelf FOREIGN KEY (shelf_id)
@@ -70,9 +72,9 @@ INSERT INTO tag (tag, tag_type_id) VALUES
   ("Travel", 6), ("War", 6), ("Children", 6), ("Vintage", 6), ("Famous Writers", 6), ("Pattern", 6),
   ("Symbol", 6), ("Blank", 6), ("Sport", 6), ("Business, Law and Economics", 6), ("Psychology", 6), ("Heart", 6);
 
-INSERT INTO shelf (shelf) VALUES
-  ("A1"), ("A2"), ("A3"), ("A4"),
-  ("B1"), ("B2"), ("B3"), ("B4"),
-  ("C1"), ("C2"), ("C3"), ("C4"),
-  ("D1"), ("D2"), ("D3"), ("D4"),
-  ("E1"), ("E2"), ("E3"), ("E4");
+INSERT INTO shelf (shelf, shelf_size) VALUES
+  ("A1", 100), ("A2", 100), ("A3", 100), ("A4", 100),
+  ("B1", 100), ("B2", 100), ("B3", 100), ("B4", 100),
+  ("C1", 100), ("C2", 100), ("C3", 100), ("C4", 100),
+  ("D1", 100), ("D2", 100), ("D3", 100), ("D4", 100),
+  ("E1", 100), ("E2", 100), ("E3", 100), ("E4", 100);

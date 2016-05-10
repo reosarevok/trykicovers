@@ -59,7 +59,7 @@ function insert_new_cover($params)
         $tags = array_merge($tags, $params["themes"]);
     }
     
-    $new_id = add_cover($params["title"], $params["translation"], $params["author"], 1, $params["shelf"]);
+    $new_id = add_cover($params["title"], $params["translation"], $params["author"], $params["comment"], 1, $params["shelf"]);
 
     foreach ($tags as $tag) {
         add_tag_to_cover($tag, $new_id);

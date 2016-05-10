@@ -22,6 +22,10 @@
                 <input class="form-control" type="text" name="author" id="author" />
             </div>
             <div class="form-group">
+                <label for="comment">Author</label>
+                <input class="form-control" type="text" name="comment" id="comment" />
+            </div>
+            <div class="form-group">
                 <label for="shelf">Shelf</label>
                 <select class="form-control" name="shelf" id="shelf">
                     <?php foreach ($shelves as $shelf): ?>
