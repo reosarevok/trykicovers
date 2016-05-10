@@ -19,6 +19,8 @@
                         <li><a href="index.php">Home</a></li>
                         <li><a href="admin.php">Admin</a></li>
                         <li><a href="search.php">Search</a></li>
+                        <li><a href="tags.php">Tags</a></li>
+                        <li><a href="shelves.php">Shelves</a></li>
                     </ul>
                 </div>
             </nav>
