@@ -51,8 +51,10 @@ INSERT INTO tag_type (tag_type_id, tag_type) VALUES
   (2, "Languages"),
   (3, "Products"),
   (4, "Materials"),
-  (5, "Measures"),
-  (6, "Themes");
+  (5, "Themes"),
+  (6, "Width"),
+  (7, "Height"),
+  (8, "Thickness");
 
 INSERT INTO tag (tag, tag_type_id) VALUES
   /*Colors*/
@@ -65,12 +67,16 @@ INSERT INTO tag (tag, tag_type_id) VALUES
   ("Collage", 3), ("Classic", 3), ("Artisan", 3), ("Sherlock", 3),
   /*Materials*/
   ("Textile", 4), ("Leather", 4), ("Paper", 4), ("Plastic", 4),
-  /*Measures*/
-  ("Small", 5), ("Standard", 5), ("Big", 5),
   /*Themes*/
-  ("Science", 6), ("Space", 6), ("Sea", 6), ("Food", 6), ("Animals", 6), ("Plants", 6), ("Nature", 6),
-  ("Travel", 6), ("War", 6), ("Children", 6), ("Vintage", 6), ("Famous Writers", 6), ("Pattern", 6),
-  ("Symbol", 6), ("Blank", 6), ("Sport", 6), ("Business, Law and Economics", 6), ("Psychology", 6), ("Heart", 6);
+  ("Science", 5), ("Space", 5), ("Sea", 5), ("Food", 5), ("Animals", 5), ("Plants", 5), ("Nature", 5),
+  ("Travel", 5), ("War", 5), ("Children", 5), ("Vintage", 5), ("Famous Writers", 5), ("Pattern", 5),
+  ("Symbol", 5), ("Blank", 5), ("Sport", 5), ("Business, Law and Economics", 5), ("Psychology", 5), ("Heart", 5),
+  /*Width*/
+  ("Slim", 6), ("Standard", 6), ("Wide", 6),
+  /*Height*/
+  ("Short", 7), ("Standard", 7), ("High", 7),
+  /*Thickness*/
+  ("Thin", 8), ("Standard", 8), ("Thick", 8);
 
 INSERT INTO shelf (shelf, shelf_size) VALUES
   ("A1", 100), ("A2", 100), ("A3", 100), ("A4", 100),

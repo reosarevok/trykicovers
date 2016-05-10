@@ -45,12 +45,34 @@
                 </div>
             </fieldset>
             <fieldset class="form-group">
-                <legend class="checkbox-head">In which sizes?</legend>
+                <legend class="checkbox-head">What's the width?</legend>
                 <div class="checkboxes">
-                    <?php foreach ($measures as $measure): ?>
-                        <div class="checkbox-inline">
-                            <input type="checkbox" name="measures[]" id="<?= $measure['tag'] ?>" value="<?= $measure['tag_id'] ?>">
-                            <label for="<?= $measure['tag'] ?>"><?= $measure['tag'] ?></label>
+                    <?php foreach ($widths as $width): ?>
+                        <div class="radio-inline">
+                            <input type="radio" name="widths[]" id="<?= $width['tag'] ?>" value="<?= $width['tag_id'] ?>" required>
+                            <label for="<?= $width['tag'] ?>"><?= $width['tag'] ?></label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <legend class="checkbox-head">What's the height?</legend>
+                <div class="checkboxes">
+                    <?php foreach ($heights as $height): ?>
+                        <div class="radio-inline">
+                            <input type="radio" name="heights[]" id="<?= $height['tag'] ?>" value="<?= $height['tag_id'] ?>" required>
+                            <label for="<?= $height['tag'] ?>"><?= $height['tag'] ?></label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <legend class="checkbox-head">What's the thickness?</legend>
+                <div class="checkboxes">
+                    <?php foreach ($thicknesses as $thickness): ?>
+                        <div class="radio-inline">
+                            <input type="radio" name="thicknesses[]" id="<?= $thickness['tag'] ?>" value="<?= $thickness['tag_id'] ?>" required>
+                            <label for="<?= $thickness['tag'] ?>"><?= $thickness['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
                 </div>

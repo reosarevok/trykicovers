@@ -31,12 +31,6 @@ function insert_new_cover($params)
         $tags = array_merge($tags, $params["products"]);
     }
 
-    if (empty($params["measures"])) {
-        return "You must select at least one measure!";
-    } else {
-        $tags = array_merge($tags, $params["measures"]);
-    }
-
     if (empty($params["languages"])) {
         return "You must select at least one language!";
     } else {
@@ -53,6 +47,24 @@ function insert_new_cover($params)
         return "You must select at least one color!";
     } else {
         $tags = array_merge($tags, $params["colors"]);
+    }
+
+    if (empty($params["thicknesses"])) {
+        return "You must select the thickness!";
+    } else {
+        $tags = array_merge($tags, $params["thicknesses"]);
+    }
+
+    if (empty($params["heights"])) {
+        return "You must select the height!";
+    } else {
+        $tags = array_merge($tags, $params["heights"]);
+    }
+
+    if (empty($params["widths"])) {
+        return "You must select the width!";
+    } else {
+        $tags = array_merge($tags, $params["widths"]);
     }
 
     if (!empty($params["themes"])) {
