@@ -12,6 +12,10 @@
             <h4 class="text-center">(<?= $cover['translated_title'] ?>)</h4>
         <?php endif; ?>
 
+        <?php if (!empty($cover['comment'])): ?>
+            <p class="text-center">(<?= $cover['comment'] ?>)</p>
+        <?php endif; ?>
+
         <?php $source = 'static/images/' . $cover['image_uuid'] . '.' . $cover['image_file_type']; ?>
         <img class="center-block small-image cover_image" src="<?= $source ?>" />
 
