@@ -25,7 +25,7 @@
             </fieldset>
             <fieldset class="form-group">
                 <legend class="checkbox-head">What width?</legend>
-                <div class="checkboxes">
+                <div class="checkboxes hidden">
                     <?php foreach ($widths as $width): ?>
                         <div class="checkbox-inline">
                             <input type="checkbox" name="widths[]" id="<?= $width['tag'] ?>" value="<?= $width['tag_id'] ?>">
@@ -36,7 +36,7 @@
             </fieldset>
             <fieldset class="form-group">
                 <legend class="checkbox-head">What height?</legend>
-                <div class="checkboxes">
+                <div class="checkboxes hidden">
                     <?php foreach ($heights as $height): ?>
                         <div class="checkbox-inline">
                             <input type="checkbox" name="heights[]" id="<?= $height['tag'] ?>" value="<?= $height['tag_id'] ?>">
@@ -47,7 +47,7 @@
             </fieldset>
             <fieldset class="form-group">
                 <legend class="checkbox-head">What thickness?</legend>
-                <div class="checkboxes">
+                <div class="checkboxes hidden">
                     <?php foreach ($thicknesses as $thickness): ?>
                         <div class="checkbox-inline">
                             <input type="checkbox" name="thicknesses[]" id="<?= $thickness['tag'] ?>" value="<?= $thickness['tag_id'] ?>" >

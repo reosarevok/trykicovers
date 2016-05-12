@@ -15,14 +15,14 @@
             </div>
             <div class="form-group">
                 <label for="translation">Translated title</label>
-                <input class="form-control" type="text" name="translation" id="translation" required />
+                <input class="form-control" type="text" name="translation" id="translation" />
             </div>
             <div class="form-group">
                 <label for="author">Author</label>
                 <input class="form-control" type="text" name="author" id="author" />
             </div>
             <div class="form-group">
-                <label for="comment">Author</label>
+                <label for="comment">Comments</label>
                 <input class="form-control" type="text" name="comment" id="comment" />
             </div>
             <div class="form-group">
