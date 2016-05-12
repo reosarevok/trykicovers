@@ -63,3 +63,9 @@ function display_cover($cover_id) {
     }
 
 }
+function update_amount($cover_id, $amount) {
+    global $db;
+    mysqli_query($db, "UPDATE cover SET amount = $amount WHERE cover_id = $cover_id") or exit(mysqli_error($db));
+    $amount = get_first("SELECT amount FROM cover WHERE cover_id = $cover_id");
+    return $amount['amount'];
+}
