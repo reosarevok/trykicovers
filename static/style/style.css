@@ -19,6 +19,10 @@ footer {
     max-height: 300px;
 }
 
+.checkbox-head, #search-head {
+    cursor: pointer;
+}
+
 .twitter-typeahead .tt-query,
 .twitter-typeahead .tt-hint {
     margin-bottom: 0;
