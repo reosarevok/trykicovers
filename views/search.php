@@ -68,6 +68,17 @@
                 </div>
             </fieldset>
             <fieldset class="form-group">
+                <legend class="checkbox-head">On which shelves?</legend>
+                <div class="checkboxes hidden">
+                    <?php foreach ($shelves as $shelf): ?>
+                        <div class="checkbox-inline">
+                            <input type="checkbox" name="shelf[]" id="<?= $shelf['shelf'] ?>" value="<?= $shelf['shelf_id'] ?>">
+                            <label for="<?= $shelf['shelf'] ?>"><?= $shelf['shelf'] ?></label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
                 <legend class="checkbox-head">From what material?</legend>
                 <div class="checkboxes hidden">
                     <?php foreach ($materials as $material): ?>

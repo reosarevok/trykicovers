@@ -1,6 +1,8 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT']."/trykicovers/system/database.php";
 
+$shelves = get_all("SELECT * FROM shelf");
+
 $colors = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 1");
 $languages = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 2");
 $products = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 3");

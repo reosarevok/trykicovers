@@ -22,6 +22,11 @@ if (!empty($_POST)) {
         $parameters[] = "tag_id IN ($tag_query) GROUP BY cover_id HAVING COUNT(DISTINCT tag_id) = $tags_number";
     }
 
+    if (!empty($_POST['shelf'])) {
+        $shelf = implode(",", $_POST['shelf']);
+        $parameters[] = "shelf_id IN ($shelf)";
+    }
+
     if (!empty($parameters)) {
         $parameters = implode(" AND ", $parameters);
         $results = get_all("SELECT * FROM cover $joins WHERE $parameters");
