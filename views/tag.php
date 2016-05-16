@@ -9,8 +9,9 @@
                 echo "<h4>Covers</h4>";
                 foreach ($covers as $cover) {
                     $id = $cover['cover_id'];
-                    display_cover($id);
-                }
+                    if ($cover['amount'] > 0) {
+                        display_cover($id);
+                    }                }
             } else {
                 echo "<p>No covers with this tag</p>";
             } ?>

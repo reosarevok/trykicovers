@@ -86,6 +86,10 @@
                 <label for="themes">Themes:</label>
                 <select multiple data-role="tagsinput" name="tag[]" id="themes"></select>
             </div>
+            <div class="form-group">
+                <input type="checkbox" name="show_all" id="show_all" value="1">
+                <label for="show_all">Also show used covers</label>
+            </div>
             <button type="submit" class="btn btn-default">Enter</button>
         </form>
     </div>

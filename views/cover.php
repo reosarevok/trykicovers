@@ -1,5 +1,11 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/cover.php"; ?>
 
+<?php if (empty($cover)): ?>
+
+<h4 class="text-center">No cover found with this ID!</h4>
+
+<?php else: ?>
+
 <div class="row">
     <div class="col-xs-12">
 
@@ -62,6 +68,8 @@
         </div>
     </div>
 </div>
+
+<?php endif; ?>
 
 <script>
     $(document).ready(function() {

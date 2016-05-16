@@ -10,13 +10,15 @@
 
             $count = 0;
             foreach ($covers as $cover) {
-                echo "<td>";
-                display_cover($cover['cover_id']);
-                echo "</td>";
-                $count++;
-                if ($count >= 3) {
-                    echo "</tr><tr>";
-                    $count = 0;
+                if ($cover['amount'] > 0) {
+                    echo "<td>";
+                    display_cover($cover['cover_id']);
+                    echo "</td>";
+                    $count++;
+                    if ($count >= 3) {
+                        echo "</tr><tr>";
+                        $count = 0;
+                    }
                 }
             } ?>
             </tr>

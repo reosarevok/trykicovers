@@ -31,7 +31,9 @@ if (!empty($_POST)) {
         else {
             foreach ($results as $result) {
                 $id = $result['cover_id'];
-                display_cover($id);
+                if ((!empty($_POST['show_all'])) || $result['amount'] > 0) {
+                    display_cover($id);
+                }
             }
         }
     }
