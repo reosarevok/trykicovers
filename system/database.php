@@ -43,9 +43,9 @@ function add_tag_to_cover($tag, $cover)
     mysqli_query($db, "INSERT INTO cover_tag (cover_id, tag_id) VALUES ($cover, $tag)") or exit(mysqli_error($db));
     return mysqli_insert_id($db);
 }
-function add_cover_image($cover, $file_type) {
+function add_cover_image($cover) {
     global $db;
-    mysqli_query($db, "INSERT INTO cover_image (cover_id, image_uuid, image_file_type) VALUES ($cover, uuid(), '$file_type')") or exit(mysqli_error($db));
+    mysqli_query($db, "INSERT INTO cover_image (cover_id, image_uuid) VALUES ($cover, uuid())") or exit(mysqli_error($db));
     $id = mysqli_insert_id($db);
     $uuid = get_first("SELECT image_uuid FROM cover_image WHERE image_id = $id");
     return $uuid['image_uuid'];
@@ -54,7 +54,7 @@ function display_cover($cover_id) {
 
     $cover = get_first("SELECT * FROM cover JOIN cover_image USING (cover_id) JOIN shelf USING (shelf_id)
       WHERE cover_id = $cover_id");
-    $source = 'static/images/' . $cover['image_uuid'] . '.' . $cover['image_file_type'];
+    $source = 'static/images/' . $cover['image_uuid'] . '.jpg';
     if (!empty($cover)) {
         echo "<a href='cover.php?id=$cover_id' target='_blank'><img class='center-block small-image cover-image' src='$source'/></a><br>";
     }

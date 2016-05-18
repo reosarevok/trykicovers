@@ -31,7 +31,7 @@
         <?php endif; ?>
 
         <div class="row image">
-            <?php $source = 'static/images/' . $cover['image_uuid'] . '.' . $cover['image_file_type']; ?>
+            <?php $source = 'static/images/' . $cover['image_uuid'] . '-thumb.jpg'; ?>
             <img class="center-block small-image cover_image" src="<?= $source ?>" />
         </div>
 
@@ -74,7 +74,14 @@
 <script>
     $(document).ready(function() {
        $('.cover_image').click(function() {
-          $(this).toggleClass("small-image");
+           if ($(this).hasClass('small-image')) {
+               $(this).attr("src", "<?= 'static/images/' . $cover['image_uuid'] . '.jpg'; ?>");
+               $(this).removeClass('small-image');
+           } else {
+               $(this).attr("src", "<?= 'static/images/' . $cover['image_uuid'] . '-thumb.jpg'; ?>");
+               $(this).addClass('small-image');
+           }
+
        });
     });
 

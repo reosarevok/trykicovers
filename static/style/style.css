@@ -15,10 +15,6 @@ footer {
     list-style-type: none;
 }
 
-.small-image {
-    max-height: 300px;
-}
-
 .checkbox-head, #search-head {
     cursor: pointer;
 }
