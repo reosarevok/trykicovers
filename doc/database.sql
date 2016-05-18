@@ -8,8 +8,10 @@ CREATE TABLE shelf (
 CREATE TABLE cover (
   cover_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
+  transliterated_title VARCHAR(255),
   translated_title VARCHAR(255),
   author VARCHAR(255),
+  transliterated_author VARCHAR(255),
   comment VARCHAR(255),
   amount INT UNSIGNED NOT NULL,
   shelf_id INT UNSIGNED NOT NULL,

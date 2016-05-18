@@ -17,6 +17,15 @@
         <?php endif; ?>
         </div>
 
+        <?php if (!empty($cover['transliterated_title']) && !empty($cover['transliterated_author']) ): ?>
+            <div class="row translated_title">
+                <h4 class="text-center">(<?= $cover['transliterated_title'] . ' by ' . $cover['transliterated_author'] ?>)</h4>
+            </div>
+        <?php elseif (!empty($cover['transliterated_title'])): ?>
+            <div class="row translated_title">
+                <h4 class="text-center">(<?= $cover['transliterated_title'] ?>)</h4>
+            </div>
+        <?php endif; ?>
 
         <?php if (!empty($cover['translated_title'])): ?>
         <div class="row translated_title">

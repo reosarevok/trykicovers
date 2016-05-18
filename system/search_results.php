@@ -6,12 +6,12 @@ if (!empty($_POST)) {
 
     if (!empty($_POST['title'])) {
         $title = $_POST['title'];
-        $parameters[] = "title LIKE '%$title%'";
+        $parameters[] = "(title LIKE '%$title%' OR transliterated_title LIKE '%$title%' OR translated_title LIKE '%$title%')";
     }
 
     if (!empty($_POST['author'])) {
         $author = $_POST['author'];
-        $parameters[] = "author LIKE '%$author%'";
+        $parameters[] = "(author LIKE '%$author%' OR transliterated_author LIKE '%$author%')";
     }
 
     if (!empty($_POST['tag'])) {

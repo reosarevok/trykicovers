@@ -13,6 +13,10 @@
                 <label for="title">Title</label>
                 <input class="form-control" type="text" name="title" id="title" required />
             </div>
+            <div class="form-group hidden" id="title_transliteration_div">
+                <label for="title_transliteration">Transliterated title</label>
+                <input class="form-control" type="text" name="title_transliteration" id="title_transliteration" />
+            </div>
             <div class="form-group">
                 <label for="translation">Translated title</label>
                 <input class="form-control" type="text" name="translation" id="translation" />
@@ -20,6 +24,10 @@
             <div class="form-group">
                 <label for="author">Author</label>
                 <input class="form-control" type="text" name="author" id="author" />
+            </div>
+            <div class="form-group hidden" id="author_transliteration_div">
+                <label for="author_transliteration">Transliterated author</label>
+                <input class="form-control" type="text" name="author_transliteration" id="author_transliteration" />
             </div>
             <div class="form-group">
                 <label for="comment">Comments</label>
@@ -117,6 +125,24 @@
         $('.tt-input').keydown(function(event){
             if(event.keyCode == 13) {
                 event.preventDefault();
+            }
+        });
+
+        $("#title").blur(function() {
+            var word = $(this).val();
+            var title = transliteration.transliterate(word);
+            if (word != title) {
+                $('#title_transliteration').val(title);
+                $('#title_transliteration_div').removeClass("hidden");
+            }
+        });
+
+        $("#author").blur(function() {
+            var word = $(this).val();
+            var author = transliteration.transliterate(word);
+            if (word != author) {
+                $('#author_transliteration').val(author);
+                $('#author_transliteration_div').removeClass("hidden");
             }
         });
     });

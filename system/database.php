@@ -20,14 +20,18 @@ function get_first($sql)
     $result = mysqli_fetch_assoc($query_result);
     return empty($result) ? array() : $result;
 }
-function add_cover($title, $translation, $author, $comment, $amount, $shelf)
+function add_cover($title, $transliterated_title, $translation, $author, $transliterated_author, $comment, $amount, $shelf)
 {
     global $db;
     $title = mysqli_real_escape_string($db, $title);
+    $transliterated_title = mysqli_real_escape_string($db, $transliterated_title);
     $translation = mysqli_real_escape_string($db, $translation);
     $author = mysqli_real_escape_string($db, $author);
+    $transliterated_author = mysqli_real_escape_string($db, $transliterated_author);
     $comment = mysqli_real_escape_string($db, $comment);
-    mysqli_query($db, "INSERT INTO cover (title, translated_title, author, comment, amount, shelf_id) VALUES ('$title', '$translation', '$author', '$comment', $amount, $shelf)") or exit(mysqli_error($db));
+    mysqli_query($db, "INSERT INTO cover (title, transliterated_title, translated_title, author,
+transliterated_author, comment, amount, shelf_id) VALUES ('$title', '$transliterated_title', '$translation', '$author',
+'$transliterated_author', '$comment', $amount, $shelf)") or exit(mysqli_error($db));
     return mysqli_insert_id($db);
 }
 function add_tag($tag, $tag_type)

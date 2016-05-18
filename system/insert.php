@@ -71,7 +71,8 @@ function insert_new_cover($params)
         $tags = array_merge($tags, $params["themes"]);
     }
     
-    $new_id = add_cover($params["title"], $params["translation"], $params["author"], $params["comment"], 1, $params["shelf"]);
+    $new_id = add_cover($params["title"], $params["title_transliteration"], $params["translation"],
+        $params["author"], $params["author_transliteration"], $params["comment"], 1, $params["shelf"]);
 
     foreach ($tags as $tag) {
         add_tag_to_cover($tag, $new_id);
@@ -103,6 +104,7 @@ function upload_file($uuid) {
             return 0;
         }
 
+        /* Create jpg */
         list($width_orig,$height_orig) = getimagesize($image);
         $ratio = $width_orig / $height_orig;
 
@@ -120,6 +122,7 @@ function upload_file($uuid) {
         $dest_file = "$image_dir/$uuid.jpg";
         imagejpeg($new_image,$dest_file);
 
+        /* Create thumbnail */
         $width_thumb = 500;
         $height_thumb = 500;
 
