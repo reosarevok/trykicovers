@@ -58,9 +58,9 @@ function display_cover($cover_id) {
 
     $cover = get_first("SELECT * FROM cover JOIN cover_image USING (cover_id) JOIN shelf USING (shelf_id)
       WHERE cover_id = $cover_id");
-    $source = 'static/images/' . $cover['image_uuid'] . '.jpg';
+    $source = 'static/images/' . $cover['image_uuid'] . '-thumb.jpg';
     if (!empty($cover)) {
-        echo "<a href='cover.php?id=$cover_id' target='_blank'><img class='center-block small-image cover-image' src='$source'/></a><br>";
+        echo "<a href='cover.php?id=$cover_id' target='_blank'><img class='center-block cover-image' src='$source'/></a><br>";
     }
     else {
         echo "<a href='cover.php?id=$cover_id'>Image not found</a><br>";

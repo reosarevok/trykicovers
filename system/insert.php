@@ -5,6 +5,9 @@ if(!isset($_FILES['cover_image']) || !(is_uploaded_file($_FILES['cover_image']['
 {
     echo '<p>Please select a file</p>';
 }
+else if (@getimagesize($_FILES['cover_image']['tmp_name']) == false) {
+    echo '<p>That file is not an image!</p>';
+}
 else
 {
     try    {
