@@ -84,8 +84,8 @@ function insert_new_cover($params)
     $uuid = add_cover_image($new_id);
     upload_file($uuid);
 
-    return "Upload succesful! See the <a href='../cover.php?id=$new_id'>newly uploaded cover</a> or
-        <a href='../add_cover.php'>upload more covers</a>";
+    header( "Location: ../cover.php?id=$new_id" );
+
 }
 
 function upload_file($uuid) {

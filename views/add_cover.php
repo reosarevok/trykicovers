@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-        <h2>Add cover</h2>
+        <h2 class="text-center">Add cover</h2>
         <form enctype="multipart/form-data" action="system/add_cover.php" method="post">
             <div class="form-group">
                 <input type="hidden" name="MAX_FILE_SIZE" value="100000000" />

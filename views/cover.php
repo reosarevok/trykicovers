@@ -17,6 +17,15 @@
         <?php endif; ?>
         </div>
 
+        <div class="row edit text-center">
+            <a href="edit_cover.php?id=<?= $cover['cover_id'] ?>">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit data
+            </a>
+            <a id="remove_cover" href="remove_cover.php?id=<?= $cover['cover_id'] ?>">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove data
+            </a>
+        </div>
+
         <?php if (!empty($cover['transliterated_title']) && !empty($cover['transliterated_author']) ): ?>
             <div class="row translated_title">
                 <h4 class="text-center">(<?= $cover['transliterated_title'] . ' by ' . $cover['transliterated_author'] ?>)</h4>

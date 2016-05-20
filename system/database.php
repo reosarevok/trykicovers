@@ -34,6 +34,35 @@ transliterated_author, comment, amount, shelf_id) VALUES ('$title', '$transliter
 '$transliterated_author', '$comment', $amount, $shelf)") or exit(mysqli_error($db));
     return mysqli_insert_id($db);
 }
+function edit_cover($cover_id, $title, $transliterated_title, $translation, $author, $transliterated_author, $comment, $shelf)
+{
+    global $db;
+    $title = mysqli_real_escape_string($db, $title);
+    $transliterated_title = mysqli_real_escape_string($db, $transliterated_title);
+    $translation = mysqli_real_escape_string($db, $translation);
+    $author = mysqli_real_escape_string($db, $author);
+    $transliterated_author = mysqli_real_escape_string($db, $transliterated_author);
+    $comment = mysqli_real_escape_string($db, $comment);
+    mysqli_query($db, "UPDATE cover SET title = '$title', transliterated_title = '$transliterated_title', translated_title = '$translation',
+author = '$author', transliterated_author = '$transliterated_author', comment = '$comment', shelf_id = $shelf WHERE cover_id = $cover_id") or exit(mysqli_error($db));
+}
+function remove_cover($cover_id)
+{
+    global $db;
+    $uuid = get_first("SELECT image_uuid FROM cover_image WHERE image_id = $cover_id");
+    $uuid = $uuid['image_uuid'];
+    $cover = dirname(getcwd())."/static/images/$uuid.jpg";
+    if (file_exists($cover)) {
+        unlink($cover);
+    }
+    $thumbnail = dirname(getcwd())."/static/images/$uuid-thumb.jpg";
+    if (file_exists($thumbnail)) {
+        unlink($thumbnail);
+    }
+    mysqli_query($db, "DELETE FROM cover_tag WHERE cover_id = $cover_id") or exit(mysqli_error($db));
+    mysqli_query($db, "DELETE FROM cover_image WHERE cover_id = $cover_id") or exit(mysqli_error($db));
+    mysqli_query($db, "DELETE FROM cover WHERE cover_id = $cover_id") or exit(mysqli_error($db));
+}
 function add_tag($tag, $tag_type)
 {
     global $db;
@@ -46,6 +75,11 @@ function add_tag_to_cover($tag, $cover)
     global $db;
     mysqli_query($db, "INSERT INTO cover_tag (cover_id, tag_id) VALUES ($cover, $tag)") or exit(mysqli_error($db));
     return mysqli_insert_id($db);
+}
+function remove_tag_from_cover($tag, $cover)
+{
+    global $db;
+    mysqli_query($db, "DELETE FROM cover_tag WHERE cover_id = $cover AND tag_id = $tag") or exit(mysqli_error($db));
 }
 function add_cover_image($cover) {
     global $db;
