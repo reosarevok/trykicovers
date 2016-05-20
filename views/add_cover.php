@@ -1,9 +1,9 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/admin.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/add_cover.php"; ?>
 
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
         <h2>Add cover</h2>
-        <form enctype="multipart/form-data" action="system/insert.php" method="post">
+        <form enctype="multipart/form-data" action="system/add_cover.php" method="post">
             <div class="form-group">
                 <input type="hidden" name="MAX_FILE_SIZE" value="100000000" />
                 <label for="cover_image">Cover</label>

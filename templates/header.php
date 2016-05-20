@@ -17,7 +17,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Home</a></li>
-                        <li><a href="admin.php">Admin</a></li>
+                        <li><a href="add_cover.php">Add a cover</a></li>
                         <li><a href="search.php">Search</a></li>
                         <li><a href="tags.php">Tags</a></li>
                         <li><a href="shelves.php">Shelves</a></li>
