@@ -11,6 +11,15 @@ footer {
     padding: 10px;
 }
 
+.table-front {
+    max-width: 300px;
+}
+
+.table-front img {
+    max-width:100%;
+    height:auto;
+}
+
 #tags > ul {
     list-style-type: none;
 }

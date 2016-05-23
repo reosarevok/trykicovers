@@ -11,7 +11,7 @@
             $count = 0;
             foreach ($covers as $cover) {
                 if ($cover['amount'] > 0) {
-                    echo "<td>";
+                    echo "<td class='table-front'>";
                     display_cover($cover['cover_id']);
                     echo "</td>";
                     $count++;
