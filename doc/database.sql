@@ -55,7 +55,9 @@ INSERT INTO tag_type (tag_type_id, tag_type) VALUES
   (5, "Themes"),
   (6, "Width"),
   (7, "Height"),
-  (8, "Thickness");
+  (8, "Thickness"),
+  (9, "Reserved"),
+  (10, "Collection");
 
 INSERT INTO tag (tag, tag_type_id) VALUES
   /*Colors*/
@@ -77,7 +79,9 @@ INSERT INTO tag (tag, tag_type_id) VALUES
   /*Height*/
   ("Short", 7), ("Standard", 7), ("High", 7),
   /*Thickness*/
-  ("Thin", 8), ("Standard", 8), ("Thick", 8);
+  ("Thin", 8), ("Standard", 8), ("Thick", 8),
+  /*Reserved by*/
+  ("Reserved by Agnieszka", 9), ("Reserved by Mana", 9), ("Reserved by Tiina", 9);
 
 INSERT INTO shelf (shelf, shelf_size) VALUES
   ("A1", 100), ("A2", 100), ("A3", 100), ("A4", 100),

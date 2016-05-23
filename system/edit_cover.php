@@ -3,7 +3,7 @@ require_once "database.php";
 
 try    {
     if (!empty($_POST)) {
-        edit_existing_cover($_POST);
+        echo edit_existing_cover($_POST);
     }
     else {
         echo '<h4>Please add some data</h4>';

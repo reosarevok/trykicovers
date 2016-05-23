@@ -74,15 +74,20 @@
             </div>
         </div>
 
-        <div class="col-xs-12 text-center" id="tags">
-            <div class="row"><h4>Tags</h4></div>
-            <div class="row">
-                <ul class="list-group">
-                    <?php foreach ($tags as $tag): ?>
-                        <li class="list-group-item col-xs-6 col-sm-3"> <a href="tag.php?id=<?= $tag['tag_id'] ?>"><?= $tag['tag'] ?></a></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
+        <div class="col-xs-12" id="tags">
+            <div class="row"><h3>Tags</h3></div>
+            <?php foreach ($tags as $tag_type => $tag_list): ?>
+                <?php if (!(empty($tag_list))): ?>
+                    <div class="row">
+                        <h4 class=""><?= $tag_type ?></h4>
+                        <ul class="list-group">
+                            <?php foreach ($tag_list as $tag): ?>
+                                <li class="list-group-item col-xs-6 col-sm-3"> <a href="tag.php?id=<?= $tag['tag_id'] ?>"><?= $tag['tag'] ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
