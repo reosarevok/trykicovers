@@ -12,3 +12,7 @@
     </div>
     <?php endforeach; ?>
 <?php endif; ?>
+
+<div class="row">
+    <a href="add_tag.php"><h2 class="text-center">Add more tags</h2></a>
+</div>
