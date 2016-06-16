@@ -2,7 +2,7 @@
 
 CREATE TABLE shelf (
   shelf_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  shelf CHAR(2) NOT NULL,
+  shelf VARCHAR(255) NOT NULL,
   shelf_size INT UNSIGNED NOT NULL);
 
 CREATE TABLE cover (
@@ -12,7 +12,7 @@ CREATE TABLE cover (
   translated_title VARCHAR(255),
   author VARCHAR(255),
   transliterated_author VARCHAR(255),
-  comment VARCHAR(255),
+  comment TEXT,
   amount INT UNSIGNED NOT NULL,
   shelf_id INT UNSIGNED NOT NULL,
   CONSTRAINT fk_shelf FOREIGN KEY (shelf_id)
