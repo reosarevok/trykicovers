@@ -112,8 +112,11 @@
                 <select multiple data-role="tagsinput" name="colors[]" id="colors"></select>
             </div>
             <div class="form-group">
-                <label for="themes">Themes:</label>
-                <select multiple data-role="tagsinput" name="themes[]" id="themes"></select>
+                <div class="input-group">
+                    <label for="themes">Themes:</label>
+                    <select multiple data-role="tagsinput" name="themes[]" id="themes"></select>
+                    <span class="btn btn-success" id="add-theme">Add a new theme!</span>
+                </div>
             </div>
             <button type="submit" class="btn btn-default">Enter</button>
         </form>
@@ -145,6 +148,7 @@
                 $('#author_transliteration_div').removeClass("hidden");
             }
         });
+
     });
 
     /* tags-input */
@@ -185,6 +189,21 @@
             displayKey: 'tag',
             source: colors.ttAdapter()
         }]
+    });
+
+    $("#add-theme").click(function() {
+        var newTheme = $(".tt-input").eq(1).typeahead('val');
+        var confirm = window.confirm("You want to add a new theme '" + newTheme + "'?");
+        if (confirm) {
+            $.ajax({
+                type: "post",
+                url: "system/add_tag.php",
+                data: { tag: newTheme, tag_type: 5 }
+            }).success(function (data) {
+                $('#themes').tagsinput('add', { "tag_id": data , "tag": newTheme });
+            });
+        }
+
     });
 
 </script>

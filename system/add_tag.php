@@ -4,7 +4,11 @@ require_once "database.php";
 try    {
     if (!empty($_POST)) {
         $new_id = add_tag($_POST['tag'], $_POST['tag_type']);
-        header( "Location: ../tag.php?id=$new_id" );
+        if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            echo $new_id;
+        } else {
+            header( "Location: ../tag.php?id=$new_id" );
+        }
     }
     else {
         echo '<h4>Please add some data</h4>';
