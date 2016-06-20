@@ -33,14 +33,6 @@
                 <label for="comment">Comments</label>
                 <input class="form-control" type="text" name="comment" id="comment" />
             </div>
-            <div class="form-group">
-                <label for="shelf">Shelf</label>
-                <select class="form-control" name="shelf" id="shelf">
-                    <?php foreach ($shelves as $shelf): ?>
-                        <option value="<?= $shelf['shelf_id'] ?>"><?= $shelf['shelf'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
             <fieldset class="form-group">
                 <legend class="checkbox-head">For which products?</legend>
                 <div class="checkboxes">

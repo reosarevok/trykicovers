@@ -73,9 +73,11 @@ function insert_new_cover($params)
     if (!empty($params["themes"])) {
         $tags = array_merge($tags, $params["themes"]);
     }
-    
+
+    $shelf = choose_shelf($params["products"]);
+
     $new_id = add_cover($params["title"], $params["title_transliteration"], $params["translation"],
-        $params["author"], $params["author_transliteration"], $params["comment"], 1, $params["shelf"]);
+        $params["author"], $params["author_transliteration"], $params["comment"], 1, $shelf);
 
     foreach ($tags as $tag) {
         add_tag_to_cover($tag, $new_id);
@@ -141,3 +143,31 @@ function upload_file($uuid) {
         imagejpeg($new_thumbnail,$dest_thumbnail);
     }
 };
+
+function choose_shelf ($products) {
+
+    if (in_array(23, $products)) {
+        $type = "Sherlock";
+    }
+    else if (in_array(21, $products)) {
+        $type = "Classic";
+    }
+    else if (in_array(20, $products)) {
+        $type = "College";
+    }
+    else if (in_array(22, $products)) {
+        $type = "Artisan";
+    }
+
+    $shelf = get_first("SELECT * FROM shelf_space JOIN shelf_type USING (shelf_id) WHERE percentage_filled < 90 AND tag = '$type' ORDER BY percentage_filled DESC");
+
+    if (empty($shelf)) {
+        $shelf = get_first("SELECT * FROM shelf_space WHERE percentage_filled = 0");
+    }
+
+    if (empty($shelf)) {
+        $shelf = get_first("SELECT * FROM shelf_space JOIN shelf_type USING (shelf_id) WHERE tag = '$type' ORDER BY percentage_filled ASC");
+    }
+
+    return $shelf["shelf_id"];
+}

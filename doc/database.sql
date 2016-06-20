@@ -89,3 +89,25 @@ INSERT INTO shelf (shelf, shelf_size) VALUES
   ("C1", 100), ("C2", 100), ("C3", 100), ("C4", 100),
   ("D1", 100), ("D2", 100), ("D3", 100), ("D4", 100),
   ("E1", 100), ("E2", 100), ("E3", 100), ("E4", 100);
+
+/* Shelf view */
+CREATE VIEW shelf_space (shelf_id, cover_amount, percentage_filled) AS
+  SELECT shelf_id, IFNULL(SUM(amount),0), IFNULL((SUM(amount)/shelf_size)*100,0)
+  FROM shelf LEFT JOIN cover USING (shelf_id)
+  GROUP BY shelf_id;
+
+CREATE VIEW shelf_type_amount (shelf_id, tag, tag_amount) AS
+  SELECT shelf_id, tag, count(*)
+  FROM shelf
+    LEFT JOIN cover USING (shelf_id)
+    LEFT JOIN cover_tag USING (cover_id)
+    LEFT JOIN tag USING (tag_id)
+  WHERE tag_type_id IS NULL OR tag_type_id = 3
+  GROUP BY shelf_id, tag;
+
+CREATE VIEW shelf_type (shelf_id, tag) AS
+  SELECT a.shelf_id, a.tag
+  FROM shelf_type_amount a
+    LEFT JOIN shelf_type_amount b
+      ON a.shelf_id = b.shelf_id AND a.tag_amount < b.tag_amount
+  WHERE b.shelf_id IS NULL;
