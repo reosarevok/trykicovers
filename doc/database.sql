@@ -75,7 +75,7 @@ INSERT INTO tag (tag, tag_type_id) VALUES
   ("Travel", 5), ("War", 5), ("Children", 5), ("Vintage", 5), ("Famous Writers", 5), ("Pattern", 5),
   ("Symbol", 5), ("Blank", 5), ("Sport", 5), ("Business, Law and Economics", 5), ("Psychology", 5), ("Heart", 5),
   /*Width*/
-  ("Slim", 6), ("Standard", 6), ("Wide", 6),
+  ("Narrow", 6), ("Standard", 6), ("Wide", 6),
   /*Height*/
   ("Short", 7), ("Standard", 7), ("High", 7),
   /*Thickness*/
