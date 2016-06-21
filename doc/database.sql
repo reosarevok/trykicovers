@@ -75,11 +75,11 @@ INSERT INTO tag (tag, tag_type_id) VALUES
   ("Travel", 5), ("War", 5), ("Children", 5), ("Vintage", 5), ("Famous Writers", 5), ("Pattern", 5),
   ("Symbol", 5), ("Blank", 5), ("Sport", 5), ("Business, Law and Economics", 5), ("Psychology", 5), ("Heart", 5),
   /*Width*/
-  ("Less than 2 cm", 6), ("2 to 3 cm", 6), ("More than 3 cm", 6),
+  ("Less than 12 cm", 6), ("12 to 14 cm", 6), ("More than 14 cm", 6),
   /*Height*/
   ("Less than 20 cm", 7), ("20 to 21 cm", 7), ("More than 21 cm", 7),
   /*Thickness*/
-  ("Less than 12 cm", 8), ("12 to 14 cm", 8), ("More than 14 cm", 8),
+  ("Less than 2 cm", 8), ("2 to 3 cm", 8), ("More than 3 cm", 8),
   /*Reserved by*/
   ("Reserved by Agnieszka", 9), ("Reserved by Mana", 9), ("Reserved by Tiina", 9);
 
