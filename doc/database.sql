@@ -67,7 +67,7 @@ INSERT INTO tag (tag, tag_type_id) VALUES
   ("Estonian", 2), ("Russian", 2), ("German", 2), ("English", 2), ("Scandinavian", 2),
   ("Others", 2), ("Blanks", 2),
   /*Products*/
-  ("Collage", 3), ("Classic", 3), ("Artisan", 3), ("Sherlock", 3),
+  ("College", 3), ("Classic", 3), ("Artisan", 3), ("Sherlock", 3),
   /*Materials*/
   ("Textile", 4), ("Leather", 4), ("Paper", 4), ("Plastic", 4),
   /*Themes*/
