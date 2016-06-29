@@ -44,12 +44,12 @@
 
                 <?php if (empty($cover['transliterated_author'])): ?>
                     <div class="form-group hidden" id="author_transliteration_div">
-                        <label for="author_transliteration">Transliterated title</label>
+                        <label for="author_transliteration">Transliterated author</label>
                         <input class="form-control" type="text" name="author_transliteration" id="author_transliteration" />
                     </div>
                 <?php else: ?>
                     <div class="form-group" id="author_transliteration_div">
-                        <label for="author_transliteration">Transliterated title</label>
+                        <label for="author_transliteration">Transliterated author</label>
                         <input class="form-control" type="text" name="author_transliteration" id="author_transliteration" value="<?= $cover['transliterated_author'] ?>" />
                     </div>
                 <?php endif; ?>
