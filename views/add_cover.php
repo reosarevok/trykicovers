@@ -49,7 +49,7 @@
                 <div class="checkboxes">
                     <?php foreach ($widths as $width): ?>
                         <div class="radio-inline">
-                            <input type="radio" name="widths[]" id="<?= $width['tag'] ?>" value="<?= $width['tag_id'] ?>" required>
+                            <input type="radio" name="widths[]" id="<?= $width['tag'] ?>" value="<?= $width['tag_id'] ?>" required <?= $width['tag'] == "2 to 3 cm" ? "checked" : '' ?>>
                             <label for="<?= $width['tag'] ?>"><?= $width['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -60,7 +60,7 @@
                 <div class="checkboxes">
                     <?php foreach ($heights as $height): ?>
                         <div class="radio-inline">
-                            <input type="radio" name="heights[]" id="<?= $height['tag'] ?>" value="<?= $height['tag_id'] ?>" required>
+                            <input type="radio" name="heights[]" id="<?= $height['tag'] ?>" value="<?= $height['tag_id'] ?>" required <?= $height['tag'] == "20 to 21 cm" ? "checked" : '' ?>>
                             <label for="<?= $height['tag'] ?>"><?= $height['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -71,7 +71,7 @@
                 <div class="checkboxes">
                     <?php foreach ($thicknesses as $thickness): ?>
                         <div class="radio-inline">
-                            <input type="radio" name="thicknesses[]" id="<?= $thickness['tag'] ?>" value="<?= $thickness['tag_id'] ?>" required>
+                            <input type="radio" name="thicknesses[]" id="<?= $thickness['tag'] ?>" value="<?= $thickness['tag_id'] ?>" required <?= $thickness['tag'] == "12 to 14 cm" ? "checked" : '' ?>>
                             <label for="<?= $thickness['tag'] ?>"><?= $thickness['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>

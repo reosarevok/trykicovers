@@ -67,7 +67,7 @@ INSERT INTO tag (tag, tag_type_id) VALUES
   ("Estonian", 2), ("Russian", 2), ("German", 2), ("English", 2), ("Scandinavian", 2),
   ("Others", 2), ("Blanks", 2),
   /*Products*/
-  ("Collage", 3), ("Classic", 3), ("Artisan", 3), ("Sherlock", 3),
+  ("College", 3), ("Classic", 3), ("Artisan", 3), ("Sherlock", 3),
   /*Materials*/
   ("Textile", 4), ("Leather", 4), ("Paper", 4), ("Plastic", 4),
   /*Themes*/
@@ -75,11 +75,11 @@ INSERT INTO tag (tag, tag_type_id) VALUES
   ("Travel", 5), ("War", 5), ("Children", 5), ("Vintage", 5), ("Famous Writers", 5), ("Pattern", 5),
   ("Symbol", 5), ("Blank", 5), ("Sport", 5), ("Business, Law and Economics", 5), ("Psychology", 5), ("Heart", 5),
   /*Width*/
-  ("Slim", 6), ("Standard", 6), ("Wide", 6),
+  ("Less than 12 cm", 6), ("12 to 14 cm", 6), ("More than 14 cm", 6),
   /*Height*/
-  ("Short", 7), ("Standard", 7), ("High", 7),
+  ("Less than 20 cm", 7), ("20 to 21 cm", 7), ("More than 21 cm", 7),
   /*Thickness*/
-  ("Thin", 8), ("Standard", 8), ("Thick", 8),
+  ("Less than 2 cm", 8), ("2 to 3 cm", 8), ("More than 3 cm", 8),
   /*Reserved by*/
   ("Reserved by Agnieszka", 9), ("Reserved by Mana", 9), ("Reserved by Tiina", 9);
 
