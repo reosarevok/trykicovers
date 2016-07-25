@@ -24,6 +24,9 @@
             <a id="remove_cover" href="remove_cover.php?id=<?= $cover['cover_id'] ?>">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove data
             </a>
+            <a href="replace_cover.php?id=<?= $cover['cover_id'] ?>">
+                <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Replace image
+            </a>
         </div>
 
         <?php if (!empty($cover['transliterated_title']) && !empty($cover['transliterated_author']) ): ?>

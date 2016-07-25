@@ -7,7 +7,7 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-            <h2 class="text-center">Edit cover</h2>
+            <h2 class="text-center">Edit cover info</h2>
             <div class="row image">
                 <?php $source = 'static/images/' . $cover['image_uuid'] . '-thumb.jpg'; ?>
                 <img class="center-block small-image cover_image" src="<?= $source ?>" />
