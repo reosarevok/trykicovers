@@ -1,4 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/front.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/browse_all.php"; ?>
 
 <?php if (count($covers) > 0): ?>
 <div class="row">
