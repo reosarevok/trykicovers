@@ -16,7 +16,12 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <!--Same as search right now: <li><a href="index.php">Home</a></li>-->
+                        <?php if (isset($_SESSION['username'])): ?>
+                            <li><p class="navbar-text">Hi, <?= $_SESSION['username'] ?>! (<a href="system/logout.php">log out</a>)</p></li>
+                        <?php else: ?>
+                            <li><a href="login.php">Log in</a></li>
+                        <?php endif; ?>
+                        <li><a href="index.php">Home</a></li>
                         <li><a href="add_cover.php">Add a cover</a></li>
                         <li><a href="search.php">Search</a></li>
                         <li><a href="tags.php">Tags</a></li>

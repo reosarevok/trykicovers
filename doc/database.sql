@@ -45,6 +45,12 @@ CREATE TABLE cover_image (
   CONSTRAINT fk_cover_2 FOREIGN KEY (cover_id)
   REFERENCES cover(cover_id));
 
+CREATE TABLE users (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(25) NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
 /*Default tags*/
 
 INSERT INTO tag_type (tag_type_id, tag_type) VALUES

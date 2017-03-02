@@ -14,6 +14,7 @@
 </head>
 <body>
 <div class="container-fluid">
+    <?php session_start(); ?>
     <?php require_once "header.php"; ?>
     <main>
     <?php require_once $_SERVER['DOCUMENT_ROOT']."/trykicovers/views/$page.php"; ?>
