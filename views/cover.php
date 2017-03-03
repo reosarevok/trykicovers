@@ -10,54 +10,54 @@
     <div class="col-xs-12">
 
         <div class="row title">
-        <?php if (!empty($cover['author'])): ?>
-            <h3 class="text-center"><?= $cover['title'] . ' by ' . $cover['author'] ?></h3>
+        <?php if (!empty($cover->author)): ?>
+            <h3 class="text-center"><?= $cover->title . ' by ' . $cover->author ?></h3>
         <?php else: ?>
-            <h3 class="text-center"><?= $cover['title'] ?></h3>
+            <h3 class="text-center"><?= $cover->title ?></h3>
         <?php endif; ?>
         </div>
 
         <div class="row edit text-center">
-            <a href="edit_cover.php?id=<?= $cover['cover_id'] ?>">
+            <a href="edit_cover.php?id=<?= $cover->cover_id ?>">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit data
             </a>
-            <a id="remove_cover" href="remove_cover.php?id=<?= $cover['cover_id'] ?>">
+            <a id="remove_cover" href="remove_cover.php?id=<?= $cover->cover_id ?>">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove data
             </a>
-            <a href="replace_cover.php?id=<?= $cover['cover_id'] ?>">
+            <a href="replace_cover.php?id=<?= $cover->cover_id ?>">
                 <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Replace image
             </a>
         </div>
 
-        <?php if (!empty($cover['transliterated_title']) && !empty($cover['transliterated_author']) ): ?>
+        <?php if (!empty($cover->transliterated_title) && !empty($cover->transliterated_author) ): ?>
             <div class="row translated_title">
-                <h4 class="text-center">(<?= $cover['transliterated_title'] . ' by ' . $cover['transliterated_author'] ?>)</h4>
+                <h4 class="text-center">(<?= $cover->transliterated_title . ' by ' . $cover->transliterated_author ?>)</h4>
             </div>
-        <?php elseif (!empty($cover['transliterated_title'])): ?>
+        <?php elseif (!empty($cover->transliterated_title)): ?>
             <div class="row translated_title">
-                <h4 class="text-center">(<?= $cover['transliterated_title'] ?>)</h4>
+                <h4 class="text-center">(<?= $cover->transliterated_title ?>)</h4>
             </div>
         <?php endif; ?>
 
-        <?php if (!empty($cover['translated_title'])): ?>
+        <?php if (!empty($cover->translated_title)): ?>
         <div class="row translated_title">
-            <h4 class="text-center">(<?= $cover['translated_title'] ?>)</h4>
+            <h4 class="text-center">(<?= $cover->translated_title ?>)</h4>
         </div>
         <?php endif; ?>
 
-        <?php if (!empty($cover['comment'])): ?>
+        <?php if (!empty($cover->comment)): ?>
         <div class="row comment">
-            <p class="text-center">(<?= $cover['comment'] ?>)</p>
+            <p class="text-center">(<?= $cover->comment ?>)</p>
         </div>
         <?php endif; ?>
 
         <div class="row image">
-            <?php $source = 'static/images/' . $cover['image_uuid'] . '-thumb.jpg'; ?>
+            <?php $source = 'static/images/' . $cover->image_uuid . '-thumb.jpg'; ?>
             <img class="center-block small-image cover_image" src="<?= $source ?>" />
         </div>
 
         <div class="text-center" id="shelf">
-            <h4>Located on shelf <?= $cover['shelf'] ?></h4>
+            <h4>Located on shelf <?= $cover->shelf ?></h4>
         </div>
 
         <div class="col-xs-12 col-md-2 col-md-offset-5 text-center">
@@ -80,12 +80,12 @@
         <div class="col-xs-12" id="tags">
             <div class="row"><h3>Tags</h3></div>
             <?php foreach ($tags as $tag_type => $tag_list): ?>
-                <?php if (!(empty($tag_list))): ?>
+                <?php if (!(empty($tag_list->fetch()))): ?>
                     <div class="row">
                         <h4 class=""><?= $tag_type ?></h4>
                         <ul class="list-group">
                             <?php foreach ($tag_list as $tag): ?>
-                                <li class="list-group-item col-xs-6 col-sm-3"> <a href="tag.php?id=<?= $tag['tag_id'] ?>"><?= $tag['tag'] ?></a></li>
+                                <li class="list-group-item col-xs-6 col-sm-3"> <a href="tag.php?id=<?= $tag->tag_id ?>"><?= $tag->tag ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -101,10 +101,10 @@
     $(document).ready(function() {
        $('.cover_image').click(function() {
            if ($(this).hasClass('small-image')) {
-               $(this).attr("src", "<?= 'static/images/' . $cover['image_uuid'] . '.jpg'; ?>");
+               $(this).attr("src", "<?= 'static/images/' . $cover->image_uuid . '.jpg'; ?>");
                $(this).removeClass('small-image');
            } else {
-               $(this).attr("src", "<?= 'static/images/' . $cover['image_uuid'] . '-thumb.jpg'; ?>");
+               $(this).attr("src", "<?= 'static/images/' . $cover->image_uuid . '-thumb.jpg'; ?>");
                $(this).addClass('small-image');
            }
 
@@ -140,10 +140,8 @@
         $.ajax({
             type: "post",
             url: "system/update_amount.php",
-            data: { amount: amount, cover_id: <?= $cover['cover_id'] ?> }
-        }).success(function (data) {
-            console.log(data);
-            console.log(field);
+            data: { amount: amount, cover_id: <?= $cover->cover_id ?> }
+        }).done(function (data) {
             $("#" + field + "").val(data);
         });
     }

@@ -1,12 +1,13 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT']."/trykicovers/system/database.php";
 
-$tags = Array();
+$tags = array();
 
-$tag_types = get_all("SELECT * FROM tag_type");
+$tag_types = $db2->tag_type();
+
 
 foreach ($tag_types as $tag_type) {
-    $name = $tag_type['tag_type'];
-    $id = $tag_type['tag_type_id'];
-    $tags[$name] = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = $id");
+    $name = $tag_type->tag_type;
+    $tag_type_id = $tag_type->tag_type_id;
+    $tags[$name] = $tag_types->tagList()->where("tag_type_id", $tag_type_id);
 }

@@ -2,15 +2,14 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <h3 class="text-center"><?= $tag['tag'] . ' (' . $tag['tag_type'] . ')' ?></h3>
+        <h3 class="text-center"><?= $tag->fetch()->tag . ' (' . $tag->tag_type()->fetch()->tag_type . ')' ?></h3>
 
         <div class="text-center" id="covers">
-            <?php if (!empty($covers)) {
+            <?php if (!empty($covers->fetch())) {
                 echo "<h4>Covers</h4>";
                 foreach ($covers as $cover) {
-                    $id = $cover['cover_id'];
-                    if ($cover['amount'] > 0) {
-                        display_cover($id);
+                    if ($cover->amount > 0) {
+                        display_cover($cover);
                     }                }
             } else {
                 echo "<p>No covers with this tag</p>";

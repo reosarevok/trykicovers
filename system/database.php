@@ -1,5 +1,19 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
 //Connect to database
+$pdo = new \PDO(
+    'mysql:host=localhost;dbname=trykicovers;charset=utf8',
+    'root',
+    '');
+$db2 = new \LessQL\Database( $pdo );
+$db2->setPrimary( 'shelf', 'shelf_id' );
+$db2->setPrimary( 'cover', 'cover_id' );
+$db2->setPrimary( 'tag_type', 'tag_type_id' );
+$db2->setPrimary( 'tag', 'tag_id' );
+$db2->setPrimary( 'cover_tag', array( 'cover_id', 'tag_id' ) );
+
+
+
 $db = mysqli_connect('localhost', 'root', '', 'trykicovers') or die(mysqli_error($db));
 mysqli_query($db, "SET NAMES 'utf8'");
 
@@ -49,7 +63,7 @@ author = '$author', transliterated_author = '$transliterated_author', comment = 
 function remove_cover($cover_id)
 {
     global $db;
-    $uuid = get_first("SELECT image_uuid FROM cover_image WHERE image_id = $cover_id");
+    $uuid = get_first("SELECT image_uuid FROM cover WHERE cover_id = $cover_id");
     $uuid = $uuid['image_uuid'];
     $cover = dirname(getcwd())."/static/images/$uuid.jpg";
     if (file_exists($cover)) {
@@ -60,7 +74,6 @@ function remove_cover($cover_id)
         unlink($thumbnail);
     }
     mysqli_query($db, "DELETE FROM cover_tag WHERE cover_id = $cover_id") or exit(mysqli_error($db));
-    mysqli_query($db, "DELETE FROM cover_image WHERE cover_id = $cover_id") or exit(mysqli_error($db));
     mysqli_query($db, "DELETE FROM cover WHERE cover_id = $cover_id") or exit(mysqli_error($db));
 }
 function add_tag($tag, $tag_type)
@@ -88,17 +101,10 @@ function add_cover_image($cover) {
     $uuid = get_first("SELECT image_uuid FROM cover_image WHERE image_id = $id");
     return $uuid['image_uuid'];
 }
-function display_cover($cover_id) {
 
-    $cover = get_first("SELECT * FROM cover JOIN cover_image USING (cover_id) JOIN shelf USING (shelf_id)
-      WHERE cover_id = $cover_id");
-    $source = 'static/images/' . $cover['image_uuid'] . '-thumb.jpg';
-    if (!empty($cover)) {
-        echo "<a href='cover.php?id=$cover_id' target='_blank'><img class='center-block cover-image' src='$source'/></a><br>";
-    }
-    else {
-        echo "<a href='cover.php?id=$cover_id'>Image not found</a><br>";
-    }
+function display_cover($cover) {
+    $source = 'static/images/' . $cover->image_uuid . '-thumb.jpg';
+    echo "<a href='cover.php?id=$cover->cover_id' target='_blank'><img class='center-block cover-image' src='$source'/></a><br>";
 
 }
 function update_amount($cover_id, $amount) {

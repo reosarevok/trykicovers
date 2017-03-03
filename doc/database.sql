@@ -15,6 +15,7 @@ CREATE TABLE cover (
   comment TEXT,
   amount INT UNSIGNED NOT NULL,
   shelf_id INT UNSIGNED NOT NULL,
+  image_uuid VARCHAR(36) NOT NULL,
   CONSTRAINT fk_shelf FOREIGN KEY (shelf_id)
   REFERENCES shelf(shelf_id));
 
@@ -37,13 +38,6 @@ CREATE TABLE cover_tag (
   REFERENCES cover(cover_id),
   CONSTRAINT fk_tag FOREIGN KEY (tag_id)
   REFERENCES tag(tag_id));
-
-CREATE TABLE cover_image (
-  image_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  cover_id INT UNSIGNED NOT NULL,
-  image_uuid VARCHAR(36) NOT NULL,
-  CONSTRAINT fk_cover_2 FOREIGN KEY (cover_id)
-  REFERENCES cover(cover_id));
 
 CREATE TABLE users (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,

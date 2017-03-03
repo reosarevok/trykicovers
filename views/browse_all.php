@@ -10,9 +10,9 @@
 
             $count = 0;
             foreach ($covers as $cover) {
-                if ($cover['amount'] > 0) {
+                if ($cover->amount > 0) {
                     echo "<td class='table-front'>";
-                    display_cover($cover['cover_id']);
+                    display_cover($cover);
                     echo "</td>";
                     $count++;
                     if ($count >= 3) {
