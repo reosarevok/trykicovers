@@ -1,0 +1,68 @@
+{
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "jquery/jquery",
+        "version": "3.1.1",
+        "dist": {
+          "url": "https://code.jquery.com/jquery-3.1.1.js",
+          "type": "file"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "typeahead.js/typeahead.js",
+        "version": "0.11.1",
+        "dist": {
+          "url": "https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js",
+          "type": "file"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "bootstrap-tagsinput/bootstrap-tagsinput",
+        "version": "0.8.0",
+        "dist": {
+          "url": "https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.js",
+          "type": "file"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "bootstrap-tagsinput/bootstrap-tagsinput-css",
+        "version": "0.8.0",
+        "dist": {
+          "url": "https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css",
+          "type": "file"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "transliteration.cyr/transliteration.cyr",
+        "version": "1.0.5",
+        "dist": {
+          "url": "https://raw.githubusercontent.com/Staltec/transliteration/master/lib/transliteration.cyr.js",
+          "type": "file"
+        }
+      }
+    }
+  ],
+  "require": {
+    "morris/lessql": "~0.3",
+    "jquery/jquery": "~3.1.1",
+    "bootstrap-tagsinput/bootstrap-tagsinput" : "0.8.0",
+    "bootstrap-tagsinput/bootstrap-tagsinput-css" : "0.8.0",
+    "typeahead.js/typeahead.js" : "0.11.1",
+    "transliteration.cyr/transliteration.cyr" : "1.0.5",
+    "twbs/bootstrap": "^3.3"
+  }
+}

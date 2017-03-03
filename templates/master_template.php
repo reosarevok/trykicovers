@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>Printing Museum Cover System</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" />
+    <link rel="stylesheet" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap-tagsinput/bootstrap-tagsinput-css/bootstrap-tagsinput.css" />
     <link href="static/style/style.css" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
-    <script src="static/vendor/transliteration.cyr.js"></script>
+    <script src="vendor/jquery/jquery/jquery-3.1.1.js"></script>
+    <script src="vendor/bootstrap-tagsinput/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+    <script src="vendor/typeahead.js/typeahead.js/typeahead.bundle.min.js"></script>
+    <script src="vendor/transliteration.cyr/transliteration.cyr/transliteration.cyr.js"></script>
 </head>
 <body>
 <div class="container-fluid">
