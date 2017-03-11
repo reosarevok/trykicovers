@@ -14,7 +14,7 @@ $thicknesses = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHER
 
 if (!(empty($_GET['id']))) {
     $id = $_GET['id'];
-    $cover = get_first("SELECT * FROM cover JOIN cover_image USING (cover_id) JOIN shelf USING (shelf_id)
+    $cover = get_first("SELECT * FROM cover JOIN shelf USING (shelf_id)
       WHERE cover_id = $id");
     $tags_result = get_all("SELECT tag_id FROM tag JOIN cover_tag USING (tag_id)
       WHERE cover_id = $id");

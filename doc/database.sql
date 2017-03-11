@@ -111,3 +111,8 @@ CREATE VIEW shelf_type (shelf_id, tag) AS
     LEFT JOIN shelf_type_amount b
       ON a.shelf_id = b.shelf_id AND a.tag_amount < b.tag_amount
   WHERE b.shelf_id IS NULL;
+
+CREATE TRIGGER before_insert_cover
+BEFORE INSERT ON cover
+FOR EACH ROW
+  SET new.image_uuid = uuid();

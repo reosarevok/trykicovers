@@ -36,70 +36,82 @@ function get_first($sql)
 }
 function add_cover($title, $transliterated_title, $translation, $author, $transliterated_author, $comment, $amount, $shelf)
 {
-    global $db;
-    $title = mysqli_real_escape_string($db, $title);
-    $transliterated_title = mysqli_real_escape_string($db, $transliterated_title);
-    $translation = mysqli_real_escape_string($db, $translation);
-    $author = mysqli_real_escape_string($db, $author);
-    $transliterated_author = mysqli_real_escape_string($db, $transliterated_author);
-    $comment = mysqli_real_escape_string($db, $comment);
-    mysqli_query($db, "INSERT INTO cover (title, transliterated_title, translated_title, author,
-transliterated_author, comment, amount, shelf_id) VALUES ('$title', '$transliterated_title', '$translation', '$author',
-'$transliterated_author', '$comment', $amount, $shelf)") or exit(mysqli_error($db));
-    return mysqli_insert_id($db);
+    global $db2;
+    $row = $db2->createRow('cover', array(
+        'title' => $title,
+            'transliterated_title' => $transliterated_title,
+            'translated_title' => $translation,
+            'author' => $author,
+            'transliterated_author' => $transliterated_author,
+            'comment' => $comment,
+            'amount' => $amount,
+            'shelf_id' => $shelf
+        )
+    );
+    $db2->begin();
+    $row->save();
+    $new_id = $db2->lastInsertId();
+    $db2->commit();
+    return $new_id;
 }
 function edit_cover($cover_id, $title, $transliterated_title, $translation, $author, $transliterated_author, $comment, $shelf)
 {
-    global $db;
-    $title = mysqli_real_escape_string($db, $title);
-    $transliterated_title = mysqli_real_escape_string($db, $transliterated_title);
-    $translation = mysqli_real_escape_string($db, $translation);
-    $author = mysqli_real_escape_string($db, $author);
-    $transliterated_author = mysqli_real_escape_string($db, $transliterated_author);
-    $comment = mysqli_real_escape_string($db, $comment);
-    mysqli_query($db, "UPDATE cover SET title = '$title', transliterated_title = '$transliterated_title', translated_title = '$translation',
-author = '$author', transliterated_author = '$transliterated_author', comment = '$comment', shelf_id = $shelf WHERE cover_id = $cover_id") or exit(mysqli_error($db));
+    global $db2;
+    $db2->begin();
+    $db2->update('cover', array(
+            'title' => $title,
+            'transliterated_title' => $transliterated_title,
+            'translated_title' => $translation,
+            'author' => $author,
+            'transliterated_author' => $transliterated_author,
+            'comment' => $comment,
+            'shelf_id' => $shelf
+        ),
+        array('cover_id' => $cover_id)
+    );
+    $db2->commit();
 }
 function remove_cover($cover_id)
 {
-    global $db;
-    $uuid = get_first("SELECT image_uuid FROM cover WHERE cover_id = $cover_id");
-    $uuid = $uuid['image_uuid'];
-    $cover = dirname(getcwd())."/static/images/$uuid.jpg";
-    if (file_exists($cover)) {
-        unlink($cover);
+    global $db2;
+    $cover = $db2->cover()->where("cover_id", $cover_id);
+    $uuid = $cover->fetch()->image_uuid;
+    $cover_image = dirname(getcwd())."/static/images/$uuid.jpg";
+    if (file_exists($cover_image)) {
+        unlink($cover_image);
     }
     $thumbnail = dirname(getcwd())."/static/images/$uuid-thumb.jpg";
     if (file_exists($thumbnail)) {
         unlink($thumbnail);
     }
-    mysqli_query($db, "DELETE FROM cover_tag WHERE cover_id = $cover_id") or exit(mysqli_error($db));
-    mysqli_query($db, "DELETE FROM cover WHERE cover_id = $cover_id") or exit(mysqli_error($db));
+
+    $cover->cover_tagList()->delete();
+    $cover->delete();
 }
 function add_tag($tag, $tag_type)
 {
-    global $db;
-    $tag = mysqli_real_escape_string($db, $tag);
-    mysqli_query($db, "INSERT INTO tag (tag, tag_type_id) VALUES ('$tag', $tag_type)") or exit(mysqli_error($db));
-    return mysqli_insert_id($db);
+    global $db2;
+    $tag = $db2->quote($tag);
+    $row = $db2->createRow('tag', array('tag' => $tag, 'tag_type_id' => $tag_type));
+    $db2->begin();
+    $row->save();
+    $new_id = $db2->lastInsertId();
+    $db2->commit();
+    return $new_id;
 }
 function add_tag_to_cover($tag, $cover)
 {
-    global $db;
-    mysqli_query($db, "INSERT INTO cover_tag (cover_id, tag_id) VALUES ($cover, $tag)") or exit(mysqli_error($db));
-    return mysqli_insert_id($db);
+    global $db2;
+    $row = $db2->createRow('cover_tag', array('cover_id' => $cover, 'tag_id' => $tag));
+    $db2->begin();
+    $row->save();
+    $db2->commit();
+
 }
 function remove_tag_from_cover($tag, $cover)
 {
-    global $db;
-    mysqli_query($db, "DELETE FROM cover_tag WHERE cover_id = $cover AND tag_id = $tag") or exit(mysqli_error($db));
-}
-function add_cover_image($cover) {
-    global $db;
-    mysqli_query($db, "INSERT INTO cover_image (cover_id, image_uuid) VALUES ($cover, uuid())") or exit(mysqli_error($db));
-    $id = mysqli_insert_id($db);
-    $uuid = get_first("SELECT image_uuid FROM cover_image WHERE image_id = $id");
-    return $uuid['image_uuid'];
+    global $db2;
+    $db2->cover_tag()->where(array('cover_id' => $cover, 'tag_id' => $tag))->delete();
 }
 
 function display_cover($cover) {
@@ -108,8 +120,8 @@ function display_cover($cover) {
 
 }
 function update_amount($cover_id, $amount) {
-    global $db;
-    mysqli_query($db, "UPDATE cover SET amount = $amount WHERE cover_id = $cover_id") or exit(mysqli_error($db));
-    $amount = get_first("SELECT amount FROM cover WHERE cover_id = $cover_id");
-    return $amount['amount'];
+    global $db2;
+    $db2->update('cover', array('amount' => $amount), array('cover_id' => $cover_id));
+    $newamount = $db2->cover()->where('cover_id', $cover_id)->fetch()->amount;
+    return $newamount;
 }

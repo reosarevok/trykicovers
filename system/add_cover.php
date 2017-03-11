@@ -27,6 +27,7 @@ else
 
 function insert_new_cover($params)
 {
+    global $db2;
     $tags = Array();
 
     if (empty($params["products"])) {
@@ -84,7 +85,8 @@ function insert_new_cover($params)
         add_tag_to_cover($tag, $new_id);
     }
 
-    $uuid = add_cover_image($new_id);
+    $uuid = $db2->cover()->where("cover_id", $new_id)->fetch()->image_uuid;
+
     upload_file($uuid);
 
     header( "Location: ../cover.php?id=$new_id" );
