@@ -57,7 +57,7 @@
         </div>
 
         <div class="text-center" id="shelf">
-            <h4>Located on shelf <?= $cover->shelf ?></h4>
+            <h4>Located on shelf <?= $cover->shelf()->fetch()->shelf ?></h4>
         </div>
 
         <div class="col-xs-12 col-md-2 col-md-offset-5 text-center">

@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="row">
-            <h3 class="text-center"><?= $shelf['shelf'] . ' (' . $shelf['shelf_size'] . ')' ?></h3>
+            <h3 class="text-center"><?= $shelf->shelf . ' (' . $shelf->shelf_size . ')' ?></h3>
         </div>
 
         <div class="text-center" id="covers">
@@ -12,17 +12,17 @@
                 <?php foreach ($covers as $cover): ?>
                     <div class="row">
                         <div class="col-xs-12 col-md-8">
-                            <?php $id = $cover['cover_id'];
-                            if ($cover['amount'] > 0) {
-                                display_cover($id);
+                            <?php $id = $cover->cover_id;
+                            if ($cover->amount > 0) {
+                                display_cover($cover);
                             } ?>
                         </div>
                         <div class="col-xs-12 col-md-2 text-center">
                             <div class="row title">
-                                <?php if (!empty($cover['author'])): ?>
-                                    <h3 class="text-center"><?= $cover['title'] . ' by ' . $cover['author'] ?></h3>
+                                <?php if (!empty($cover->author)): ?>
+                                    <h3 class="text-center"><?= $cover->title . ' by ' . $cover->author ?></h3>
                                 <?php else: ?>
-                                    <h3 class="text-center"><?= $cover['title'] ?></h3>
+                                    <h3 class="text-center"><?= $cover->title ?></h3>
                                 <?php endif; ?>
                             </div>
                             <div class="input-group row">
@@ -31,7 +31,7 @@
                                         <span class="glyphicon glyphicon-minus"></span>
                                     </button>
                                 </span>
-                                                <input type="text" name="amount-<?= $id ?>" id="amount-<?= $id ?>" class="form-control input-number text-center" value="<?= $cover['amount'] ?>" min="0" readonly />
+                                                <input type="text" name="amount-<?= $id ?>" id="amount-<?= $id ?>" class="form-control input-number text-center" value="<?= $cover->amount ?>" min="0" readonly />
                                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="amount-<?= $id ?>" data-cover-id="<?= $id ?>">
                                         <span class="glyphicon glyphicon-plus"></span>
@@ -55,7 +55,7 @@
         var fieldName = $(this).attr('data-field');
         var type      = $(this).attr('data-type');
         var cover_id  = $(this).attr('data-cover-id');
-        var input = $("input[name='"+fieldName+"']");
+        var input = $("input[name='"+fieldName+"");
         var currentVal = parseInt(input.val());
         console.log(newVal, fieldName, cover_id);
         if (!isNaN(currentVal)) {
@@ -81,7 +81,7 @@
             type: "post",
             url: "system/update_amount.php",
             data: { amount: amount, cover_id: cover_id }
-        }).success(function (data) {
+        }).done(function (data) {
             $("#" + field + "").val(data);
         });
     }

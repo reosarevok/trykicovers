@@ -73,7 +73,7 @@
                     <div class="checkboxes">
                         <?php foreach ($products as $product): ?>
                             <div class="checkbox-inline">
-                                <input type="checkbox" name="products[]" id="<?= $product['tag'] ?>" value="<?= $product['tag_id'] ?>" <?= in_array($product['tag_id'], $tags) ? "checked" : '' ?>>
+                                <input type="checkbox" name="products[]" id="<?= $product['tag'] ?>" value="<?= $product['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $product['tag_id'])->fetch())) ? "checked" : '' ?>>
                                 <label for="<?= $product['tag'] ?>"><?= $product['tag'] ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -85,7 +85,7 @@
                     <div class="checkboxes">
                         <?php foreach ($widths as $width): ?>
                             <div class="radio-inline">
-                                <input type="radio" name="widths[]" id="<?= $width['tag'] ?>" value="<?= $width['tag_id'] ?>" <?= in_array($width['tag_id'], $tags) ? "checked" : '' ?> required>
+                                <input type="radio" name="widths[]" id="<?= $width['tag'] ?>" value="<?= $width['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $width['tag_id'])->fetch())) ? "checked" : '' ?> required>
                                 <label for="<?= $width['tag'] ?>"><?= $width['tag'] ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -97,7 +97,7 @@
                     <div class="checkboxes">
                         <?php foreach ($heights as $height): ?>
                             <div class="radio-inline">
-                                <input type="radio" name="heights[]" id="<?= $height['tag'] ?>" value="<?= $height['tag_id'] ?>" <?= in_array($height['tag_id'], $tags) ? "checked" : '' ?> required>
+                                <input type="radio" name="heights[]" id="<?= $height['tag'] ?>" value="<?= $height['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $height['tag_id'])->fetch())) ? "checked" : '' ?> required>
                                 <label for="<?= $height['tag'] ?>"><?= $height['tag'] ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -109,7 +109,7 @@
                     <div class="checkboxes">
                         <?php foreach ($thicknesses as $thickness): ?>
                             <div class="radio-inline">
-                                <input type="radio" name="thicknesses[]" id="<?= $thickness['tag'] ?>" value="<?= $thickness['tag_id'] ?>" <?= in_array($thickness['tag_id'], $tags) ? "checked" : '' ?> required>
+                                <input type="radio" name="thicknesses[]" id="<?= $thickness['tag'] ?>" value="<?= $thickness['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $thickness['tag_id'])->fetch())) ? "checked" : '' ?> required>
                                 <label for="<?= $thickness['tag'] ?>"><?= $thickness['tag'] ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -121,7 +121,7 @@
                     <div class="checkboxes">
                         <?php foreach ($languages as $language): ?>
                             <div class="checkbox-inline">
-                                <input type="checkbox" name="languages[]" id="<?= $language['tag'] ?>" value="<?= $language['tag_id'] ?>" <?= in_array($language['tag_id'], $tags) ? "checked" : '' ?>>
+                                <input type="checkbox" name="languages[]" id="<?= $language['tag'] ?>" value="<?= $language['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $language['tag_id'])->fetch())) ? "checked" : '' ?>>
                                 <label for="<?= $language['tag'] ?>"><?= $language['tag'] ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -133,7 +133,7 @@
                     <div class="checkboxes">
                         <?php foreach ($materials as $material): ?>
                             <div class="checkbox-inline">
-                                <input type="checkbox" name="materials[]" id="<?= $material['tag'] ?>" value="<?= $material['tag_id'] ?>" <?= in_array($material['tag_id'], $tags) ? "checked" : '' ?>>
+                                <input type="checkbox" name="materials[]" id="<?= $material['tag'] ?>" value="<?= $material['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $material['tag_id'])->fetch())) ? "checked" : '' ?>>
                                 <label for="<?= $material['tag'] ?>"><?= $material['tag'] ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -246,7 +246,7 @@
                     type: "post",
                     url: "system/add_tag.php",
                     data: { tag: newTheme, tag_type: 5 }
-                }).success(function (data) {
+                }).done(function (data) {
                     $('#themes').tagsinput('add', { "tag_id": data , "tag": newTheme });
                 });
             }

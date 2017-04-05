@@ -16,11 +16,11 @@ catch(Exception $e)
 
 function edit_existing_cover($params)
 {
+    global $db2;
     $tags = Array();
     $cover_id = $params['cover_id'];
-    $tags_result = get_all("SELECT tag_id FROM tag JOIN cover_tag USING (tag_id) WHERE cover_id = $cover_id");
-    $existing_tags = array();
-    array_walk_recursive($tags_result, function($a) use (&$existing_tags) { $existing_tags[] = $a; });
+    $cover = $db2->cover()->where("cover_id", $cover_id);
+    $used_tags = $cover->cover_tagList()->tag();
 
     if (empty($params["products"])) {
         return "You must select at least one product!";
@@ -68,17 +68,24 @@ function edit_existing_cover($params)
         $tags = array_merge($tags, $params["themes"]);
     }
 
-    edit_cover($cover_id, $params["title"], $params["title_transliteration"], $params["translation"],
-        $params["author"], $params["author_transliteration"], $params["comment"], $params["shelf"]);
+    $cover = $cover->fetch();
+    $cover->title = $params["title"];
+    $cover->transliterated_title = $params["title_transliteration"];
+    $cover->translated_title = $params["translation"];
+    $cover->author = $params["author"];
+    $cover->transliterated_author = $params["author_transliteration"];
+    $cover->comment = $params["comment"];
+    $cover->shelf_id = $params["shelf"];
+    $cover->save();
 
-    foreach ($existing_tags as $tag) {
-        if (!(in_array($tag, $tags))) {
-            remove_tag_from_cover($tag, $cover_id);
+    foreach ($used_tags as $tag) {
+        if (!(in_array($tag->tag_id, $tags))) {
+            remove_tag_from_cover($tag->tag_id, $cover_id);
         }
     }
 
     foreach ($tags as $tag) {
-        if (!(in_array($tag, $existing_tags))) {
+        if (empty($used_tags->where('tag_id', $tag)->fetch())) {
             add_tag_to_cover($tag, $cover_id);
         }
     }

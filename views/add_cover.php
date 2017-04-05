@@ -38,8 +38,8 @@
                 <div class="checkboxes">
                     <?php foreach ($products as $product): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="products[]" id="<?= $product['tag'] ?>" value="<?= $product['tag_id'] ?>">
-                            <label for="<?= $product['tag'] ?>"><?= $product['tag'] ?></label>
+                            <input type="checkbox" name="products[]" id="<?= $product->tag ?>" value="<?= $product->tag_id ?>">
+                            <label for="<?= $product->tag ?>"><?= $product->tag ?></label>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -49,8 +49,8 @@
                 <div class="checkboxes">
                     <?php foreach ($widths as $width): ?>
                         <div class="radio-inline">
-                            <input type="radio" name="widths[]" id="<?= $width['tag'] ?>" value="<?= $width['tag_id'] ?>" required <?= $width['tag'] == "2 to 3 cm" ? "checked" : '' ?>>
-                            <label for="<?= $width['tag'] ?>"><?= $width['tag'] ?></label>
+                            <input type="radio" name="widths[]" id="<?= $width->tag ?>" value="<?= $width->tag_id ?>" required <?= $width->tag == "12 to 14 cm" ? "checked" : '' ?>>
+                            <label for="<?= $width->tag ?>"><?= $width->tag ?></label>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -60,8 +60,8 @@
                 <div class="checkboxes">
                     <?php foreach ($heights as $height): ?>
                         <div class="radio-inline">
-                            <input type="radio" name="heights[]" id="<?= $height['tag'] ?>" value="<?= $height['tag_id'] ?>" required <?= $height['tag'] == "20 to 21 cm" ? "checked" : '' ?>>
-                            <label for="<?= $height['tag'] ?>"><?= $height['tag'] ?></label>
+                            <input type="radio" name="heights[]" id="<?= $height->tag ?>" value="<?= $height->tag_id ?>" required <?= $height->tag == "20 to 21 cm" ? "checked" : '' ?>>
+                            <label for="<?= $height->tag ?>"><?= $height->tag ?></label>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -71,8 +71,8 @@
                 <div class="checkboxes">
                     <?php foreach ($thicknesses as $thickness): ?>
                         <div class="radio-inline">
-                            <input type="radio" name="thicknesses[]" id="<?= $thickness['tag'] ?>" value="<?= $thickness['tag_id'] ?>" required <?= $thickness['tag'] == "12 to 14 cm" ? "checked" : '' ?>>
-                            <label for="<?= $thickness['tag'] ?>"><?= $thickness['tag'] ?></label>
+                            <input type="radio" name="thicknesses[]" id="<?= $thickness->tag ?>" value="<?= $thickness->tag_id ?>" required <?= $thickness->tag == "2 to 3 cm" ? "checked" : '' ?>>
+                            <label for="<?= $thickness->tag ?>"><?= $thickness->tag ?></label>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -82,8 +82,8 @@
                 <div class="checkboxes">
                     <?php foreach ($languages as $language): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="languages[]" id="<?= $language['tag'] ?>" value="<?= $language['tag_id'] ?>">
-                            <label for="<?= $language['tag'] ?>"><?= $language['tag'] ?></label>
+                            <input type="checkbox" name="languages[]" id="<?= $language->tag ?>" value="<?= $language->tag_id ?>">
+                            <label for="<?= $language->tag ?>"><?= $language->tag ?></label>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -93,8 +93,8 @@
                 <div class="checkboxes">
                     <?php foreach ($materials as $material): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="materials[]" id="<?= $material['tag'] ?>" value="<?= $material['tag_id'] ?>">
-                            <label for="<?= $material['tag'] ?>"><?= $material['tag'] ?></label>
+                            <input type="checkbox" name="materials[]" id="<?= $material->tag ?>" value="<?= $material->tag_id ?>">
+                            <label for="<?= $material->tag ?>"><?= $material->tag ?></label>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -191,7 +191,7 @@
                 type: "post",
                 url: "system/add_tag.php",
                 data: { tag: newTheme, tag_type: 5 }
-            }).success(function (data) {
+            }).done(function (data) {
                 $('#themes').tagsinput('add', { "tag_id": data , "tag": newTheme });
             });
         }

@@ -7,6 +7,8 @@ $pdo = new \PDO(
     '');
 $db2 = new \LessQL\Database( $pdo );
 $db2->setPrimary( 'shelf', 'shelf_id' );
+$db2->setPrimary( 'shelf_space', 'shelf_id' );
+$db2->setPrimary( 'shelf_type', 'shelf_id' );
 $db2->setPrimary( 'cover', 'cover_id' );
 $db2->setPrimary( 'tag_type', 'tag_type_id' );
 $db2->setPrimary( 'tag', 'tag_id' );
@@ -54,23 +56,6 @@ function add_cover($title, $transliterated_title, $translation, $author, $transl
     $db2->commit();
     return $new_id;
 }
-function edit_cover($cover_id, $title, $transliterated_title, $translation, $author, $transliterated_author, $comment, $shelf)
-{
-    global $db2;
-    $db2->begin();
-    $db2->update('cover', array(
-            'title' => $title,
-            'transliterated_title' => $transliterated_title,
-            'translated_title' => $translation,
-            'author' => $author,
-            'transliterated_author' => $transliterated_author,
-            'comment' => $comment,
-            'shelf_id' => $shelf
-        ),
-        array('cover_id' => $cover_id)
-    );
-    $db2->commit();
-}
 function remove_cover($cover_id)
 {
     global $db2;
@@ -91,7 +76,6 @@ function remove_cover($cover_id)
 function add_tag($tag, $tag_type)
 {
     global $db2;
-    $tag = $db2->quote($tag);
     $row = $db2->createRow('tag', array('tag' => $tag, 'tag_type_id' => $tag_type));
     $db2->begin();
     $row->save();
@@ -118,10 +102,4 @@ function display_cover($cover) {
     $source = 'static/images/' . $cover->image_uuid . '-thumb.jpg';
     echo "<a href='cover.php?id=$cover->cover_id' target='_blank'><img class='center-block cover-image' src='$source'/></a><br>";
 
-}
-function update_amount($cover_id, $amount) {
-    global $db2;
-    $db2->update('cover', array('amount' => $amount), array('cover_id' => $cover_id));
-    $newamount = $db2->cover()->where('cover_id', $cover_id)->fetch()->amount;
-    return $newamount;
 }

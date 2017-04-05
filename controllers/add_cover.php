@@ -1,13 +1,12 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT']."/trykicovers/system/database.php";
 
-$shelves = get_all("SELECT * FROM shelf_space");
-
-$colors = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 1");
-$languages = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 2");
-$products = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 3");
-$materials = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 4");
-$themes = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 5");
-$widths = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 6");
-$heights = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 7");
-$thicknesses = get_all("SELECT * FROM tag JOIN tag_type USING (tag_type_id) WHERE tag_type_id = 8");
+$all_tags = $db2->tag_type()->tagList();
+$colors = $all_tags->where("tag_type_id", 1);
+$languages = $all_tags->where("tag_type_id", 2);
+$products = $all_tags->where("tag_type_id", 3);
+$materials = $all_tags->where("tag_type_id", 4);
+$themes = $all_tags->where("tag_type_id", 5);
+$widths = $all_tags->where("tag_type_id", 6);
+$heights = $all_tags->where("tag_type_id", 7);
+$thicknesses = $all_tags->where("tag_type_id", 8);
