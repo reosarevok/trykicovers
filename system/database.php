@@ -13,6 +13,7 @@ $db2->setPrimary( 'cover', 'cover_id' );
 $db2->setPrimary( 'tag_type', 'tag_type_id' );
 $db2->setPrimary( 'tag', 'tag_id' );
 $db2->setPrimary( 'cover_tag', array( 'cover_id', 'tag_id' ) );
+$db2->setPrimary( 'cover_user', array( 'cover_id', 'user_id' ) );
 
 
 

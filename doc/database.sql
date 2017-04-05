@@ -45,6 +45,16 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE cover_user (
+  cover_id INT UNSIGNED NOT NULL,
+  user_id INT UNSIGNED NOT NULL,
+  amount INT UNSIGNED NOT NULL,
+  PRIMARY KEY (cover_id, user_id),
+  CONSTRAINT fk_cover_user_cover FOREIGN KEY (cover_id)
+  REFERENCES cover(cover_id),
+  CONSTRAINT fk_cover_user_user FOREIGN KEY (user_id)
+  REFERENCES users(id));
+
 /*Default tags*/
 
 INSERT INTO tag_type (tag_type_id, tag_type) VALUES
@@ -55,9 +65,7 @@ INSERT INTO tag_type (tag_type_id, tag_type) VALUES
   (5, "Themes"),
   (6, "Width"),
   (7, "Height"),
-  (8, "Thickness"),
-  (9, "Reserved"),
-  (10, "Collection");
+  (8, "Thickness");
 
 INSERT INTO tag (tag, tag_type_id) VALUES
   /*Colors*/
@@ -79,9 +87,7 @@ INSERT INTO tag (tag, tag_type_id) VALUES
   /*Height*/
   ("Less than 20 cm", 7), ("20 to 21 cm", 7), ("More than 21 cm", 7),
   /*Thickness*/
-  ("Less than 2 cm", 8), ("2 to 3 cm", 8), ("More than 3 cm", 8),
-  /*Reserved by*/
-  ("Reserved by Agnieszka", 9), ("Reserved by Mana", 9), ("Reserved by Tiina", 9);
+  ("Less than 2 cm", 8), ("2 to 3 cm", 8), ("More than 3 cm", 8);
 
 INSERT INTO shelf (shelf, shelf_size) VALUES
   ("A1", 100), ("A2", 100), ("A3", 100), ("A4", 100),

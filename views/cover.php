@@ -77,6 +77,39 @@
             </div>
         </div>
 
+
+            <div class="col-xs-12 col-md-2 col-md-offset-5 text-center">
+                <div class="row"><h4>Reservations</h4> </div>
+                <?php if (!(empty($reservations))): ?>
+                    <h5>Reserved by:</h5>
+                    <ul class="text-left">
+                    <?php foreach ($reservations as $reservation): ?>
+                        <?php if (empty($_SESSION['user_id']) or ($_SESSION['user_id'] != $reservation->user_id)): ?>
+                            <?php $user = $db2->users()->where("id", $reservation->user_id)->fetch(); ?>
+                            <li><?= $user->username ?> (<?= $reservation->amount ?>)</li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+                <?php if (!(empty($_SESSION['user_id']))): ?>
+                    <h5>Reserved by me:</h5>
+                    <div class="input-group row">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="reservation">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                        </span>
+                        <input type="text" name="reservation" id="reservation" class="form-control input-number text-center" value="<?= $user_reservation->amount ?>" min="0" readonly />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="reservation">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </span>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+
         <div class="col-xs-12" id="tags">
             <div class="row"><h3>Tags</h3></div>
             <?php foreach ($tags as $tag_type => $tag_list): ?>
@@ -137,13 +170,24 @@
     });
 
     function update_amount(amount, field) {
-        $.ajax({
-            type: "post",
-            url: "system/update_amount.php",
-            data: { amount: amount, cover_id: <?= $cover->cover_id ?> }
-        }).done(function (data) {
-            $("#" + field + "").val(data);
-        });
+        if (field == "amount") {
+            $.ajax({
+                type: "post",
+                url: "system/update_amount.php",
+                data: {amount: amount, cover_id: <?= $cover->cover_id ?> }
+            }).done(function (data) {
+                $("#" + field + "").val(data);
+            });
+        }
+        else if (field == "reservation") {
+            $.ajax({
+                type: "post",
+                url: "system/update_reservation.php",
+                data: {amount: amount, cover_id: <?= $cover->cover_id ?>, user_id: <?= $_SESSION["user_id"] ?> }
+            }).done(function (data) {
+                $("#" + field + "").val(data);
+            });
+        }
     }
 
 </script>
