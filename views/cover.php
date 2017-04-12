@@ -95,13 +95,13 @@
                     <h5>Reserved by me:</h5>
                     <div class="input-group row">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="reservation">
+                            <button type="button" id="reservation-minus" class="btn btn-danger btn-number"  data-type="minus" data-field="reservation">
                                 <span class="glyphicon glyphicon-minus"></span>
                             </button>
                         </span>
                         <input type="text" name="reservation" id="reservation" class="form-control input-number text-center" value="<?= $user_reservation->amount ?>" min="0" readonly />
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="reservation">
+                            <button type="button" id="reservation-plus" class="btn btn-success btn-number" data-type="plus" data-field="reservation">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </span>

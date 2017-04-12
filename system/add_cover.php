@@ -2,6 +2,7 @@
 require_once "database.php";
 require_once "upload_file.php";
 
+
 if(!isset($_FILES['cover_image']) || !(is_uploaded_file($_FILES['cover_image']['tmp_name'])))
 {
     echo '<p>Please select a file</p>';
@@ -76,7 +77,7 @@ function insert_new_cover($params)
         $tags = array_merge($tags, $params["themes"]);
     }
 
-    $shelf = choose_shelf($params["products"]);
+    $shelf = choose_shelf($db2, $params["products"]);
 
     $new_id = add_cover($params["title"], $params["title_transliteration"], $params["translation"],
         $params["author"], $params["author_transliteration"], $params["comment"], 1, $shelf);
@@ -94,7 +95,7 @@ function insert_new_cover($params)
 }
 
 
-function choose_shelf ($products) {
+function choose_shelf ($db, $products) {
 
     if (in_array(23, $products)) {
         $type = "Sherlock";
@@ -109,14 +110,14 @@ function choose_shelf ($products) {
         $type = "Artisan";
     }
 
-    $shelf = get_first("SELECT * FROM shelf_space JOIN shelf_type USING (shelf_id) WHERE percentage_filled < 90 AND tag = '$type' ORDER BY percentage_filled DESC");
-
+    $shelf = get_first($db, "SELECT * FROM shelf_space JOIN shelf_type USING (shelf_id) WHERE percentage_filled < 90 AND tag = '$type' ORDER BY percentage_filled DESC");
+    
     if (empty($shelf)) {
-        $shelf = get_first("SELECT * FROM shelf_space WHERE percentage_filled = 0");
+        $shelf = get_first($db, "SELECT * FROM shelf_space WHERE percentage_filled = 0 ORDER BY shelf_id");
     }
 
     if (empty($shelf)) {
-        $shelf = get_first("SELECT * FROM shelf_space JOIN shelf_type USING (shelf_id) WHERE tag = '$type' ORDER BY percentage_filled ASC");
+        $shelf = get_first($db, "SELECT * FROM shelf_space JOIN shelf_type USING (shelf_id) WHERE tag = '$type' ORDER BY percentage_filled ASC");
     }
 
     return $shelf["shelf_id"];

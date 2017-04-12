@@ -29,8 +29,10 @@ if (!empty($_POST)) {
 
     if (!empty($parameters)) {
         $parameters = implode(" AND ", $parameters);
+        $sth = $db2->prepare("SELECT * FROM cover $joins WHERE $parameters");
+        $sth->execute();
+        $results = $sth->fetchAll();
         //TODO: move this to use lessql somehow
-        $results = get_all("SELECT * FROM cover $joins WHERE $parameters");
         if (empty($results)) {
             echo "We didn't find anything like that. Sorry!";
         }

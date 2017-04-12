@@ -2,7 +2,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 //Connect to database
 $pdo = new \PDO(
-    'mysql:host=localhost;dbname=trykicovers;charset=utf8',
+    'mysql:host=127.0.0.1;dbname=trykicovers;charset=utf8',
     'root',
     '');
 $db2 = new \LessQL\Database( $pdo );
@@ -17,24 +17,15 @@ $db2->setPrimary( 'cover_user', array( 'cover_id', 'user_id' ) );
 
 
 
-$db = mysqli_connect('localhost', 'root', '', 'trykicovers') or die(mysqli_error($db));
+$db = mysqli_connect('127.0.0.1', 'root', '', 'trykicovers') or die(mysqli_error($db));
 mysqli_query($db, "SET NAMES 'utf8'");
 
-function get_all($sql)
+function get_first($db, $sql)
 {
-    global $db;
-    $result = array();
-    $query_result = mysqli_query($db, $sql) or exit(mysqli_error($db));
-    while ($row = mysqli_fetch_assoc($query_result)) {
-        $result[] = $row;
-    }
-    return $result;
-}
-function get_first($sql)
-{
-    global $db;
-    $query_result = mysqli_query($db, $sql) or exit(mysqli_error($db));
-    $result = mysqli_fetch_assoc($query_result);
+    $sth = $db->prepare($sql);
+    $sth->execute();
+    $result = $sth->fetch(PDO::FETCH_ASSOC);
+
     return empty($result) ? array() : $result;
 }
 function add_cover($title, $transliterated_title, $translation, $author, $transliterated_author, $comment, $amount, $shelf)
