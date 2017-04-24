@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<dataset>
+    <cover cover_id="1" title="Cover 1" amount="1" shelf_id="1" image_uuid="1"/>
+    <cover cover_id="2" title="Cover 2" amount="1" shelf_id="1" image_uuid="1"/>
+    <cover cover_id="3" title="Cover 3" amount="1" shelf_id="3" image_uuid="1"/>
+    <cover cover_id="4" title="Cover 4" amount="5" shelf_id="2" image_uuid="1"/>
+    <cover cover_id="5" title="Cover 5" amount="2" shelf_id="4" image_uuid="1"/>
+
+    <cover_tag cover_id="1" tag_id="23"/>
+    <cover_tag cover_id="1" tag_id="21"/>
+    <cover_tag cover_id="2" tag_id="23"/>
+    <cover_tag cover_id="3" tag_id="23"/>
+    <cover_tag cover_id="4" tag_id="21"/>
+    <cover_tag cover_id="5" tag_id="22"/>
+</dataset>

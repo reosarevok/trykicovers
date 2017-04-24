@@ -63,6 +63,13 @@
     "bootstrap-tagsinput/bootstrap-tagsinput-css" : "0.8.0",
     "typeahead.js/typeahead.js" : "0.11.1",
     "transliteration.cyr/transliteration.cyr" : "1.0.5",
-    "twbs/bootstrap": "^3.3"
+    "twbs/bootstrap": "^3.3",
+    "behat/mink-extension": "^2.2",
+    "behat/mink-selenium2-driver": "^1.3",
+    "behat/mink-goutte-driver": "^1.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.1",
+    "phpunit/dbunit": "^3.0"
   }
 }

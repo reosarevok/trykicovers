@@ -1,0 +1,16 @@
+default:
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://localhost/trykicovers
+      goutte: ~
+      selenium2: ~
+      browser_name: 'chrome'
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+      paths: [ %paths.base%/features/default ]
+    amounts:
+      contexts:
+        - AmountTestingContext
+      paths: [ %paths.base%/features/amounts ]
