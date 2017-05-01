@@ -64,13 +64,13 @@
             <div class="row"><h4>Amount</h4> </div>
             <div class="input-group row">
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="amount">
+                    <button type="button"  id="amount-minus" class="btn btn-danger btn-number"  data-type="minus" data-field="amount">
                         <span class="glyphicon glyphicon-minus"></span>
                     </button>
                 </span>
                 <input type="text" name="amount" id="amount" class="form-control input-number text-center" value="<?= $cover['amount'] ?>" min="0" readonly />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="amount">
+                    <button type="button"  id="amount-plus" class="btn btn-success btn-number" data-type="plus" data-field="amount">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </span>
@@ -84,7 +84,7 @@
                     <h5>Reserved by:</h5>
                     <ul class="text-left">
                     <?php foreach ($reservations as $reservation): ?>
-                        <?php if (empty($_SESSION['user_id']) or ($_SESSION['user_id'] != $reservation->user_id)): ?>
+                        <?php if ((empty($_SESSION['user_id']) or ($_SESSION['user_id'] != $reservation->user_id)) and ($reservation->amount > 0)): ?>
                             <?php $user = $db2->users()->where("id", $reservation->user_id)->fetch(); ?>
                             <li><?= $user->username ?> (<?= $reservation->amount ?>)</li>
                         <?php endif; ?>
@@ -99,7 +99,7 @@
                                 <span class="glyphicon glyphicon-minus"></span>
                             </button>
                         </span>
-                        <input type="text" name="reservation" id="reservation" class="form-control input-number text-center" value="<?= $user_reservation->amount ?>" min="0" readonly />
+                        <input type="text" name="reservation" id="reservation" class="form-control input-number text-center" value="<?= $user_reservation ? $user_reservation->amount  : 0 ?>" min="0" readonly />
                         <span class="input-group-btn">
                             <button type="button" id="reservation-plus" class="btn btn-success btn-number" data-type="plus" data-field="reservation">
                                 <span class="glyphicon glyphicon-plus"></span>
