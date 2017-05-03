@@ -80,7 +80,7 @@
 
             <div class="col-xs-12 col-md-2 col-md-offset-5 text-center">
                 <div class="row"><h4>Reservations</h4> </div>
-                <?php if (!(empty($reservations))): ?>
+                <?php if (!(empty($reservations->fetch()))): ?>
                     <h5>Reserved by:</h5>
                     <ul class="text-left">
                     <?php foreach ($reservations as $reservation): ?>
