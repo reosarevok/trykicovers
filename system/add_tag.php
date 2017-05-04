@@ -7,7 +7,7 @@ try    {
         if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             echo $new_id;
         } else {
-            header( "Location: ../tag.php?id=$new_id" );
+            header( "Location: ../tags.php" );
         }
     }
     else {

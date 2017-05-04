@@ -11,6 +11,8 @@
     </div>
  <?php endforeach; ?>
 
-<div class="row">
-    <a href="add_tag.php"><h2 class="text-center">Add more tags</h2></a>
-</div>
+<?php if (!(empty($_SESSION['user_id']))): ?>
+    <div class="row">
+        <a href="add_tag.php"><h2 class="text-center">Add more tags</h2></a>
+    </div>
+<?php endif; ?>
