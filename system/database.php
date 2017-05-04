@@ -20,14 +20,6 @@ $db2->setPrimary( 'cover_user', array( 'cover_id', 'user_id' ) );
 $db = mysqli_connect('127.0.0.1', 'root', '', 'trykicovers') or die(mysqli_error($db));
 mysqli_query($db, "SET NAMES 'utf8'");
 
-function get_first($db, $sql)
-{
-    $sth = $db->prepare($sql);
-    $sth->execute();
-    $result = $sth->fetch(PDO::FETCH_ASSOC);
-
-    return empty($result) ? array() : $result;
-}
 function add_cover($title, $transliterated_title, $translation, $author, $transliterated_author, $comment, $amount, $shelf)
 {
     global $db2;
