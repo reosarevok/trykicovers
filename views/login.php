@@ -17,5 +17,6 @@
             </p>
         </form>
         <p>If you don't have an account, you can <a href="register.php">register</a>.</p>
+        <p>Did you <a href="pre_password_recovery.php">forget your password</a>?</p>
     </div>
 </div>

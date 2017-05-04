@@ -1,4 +1,4 @@
-ALTER TABLE cover ADD COLUMN image_uuid VARCHAR(36) ;
+ALTER TABLE cover ADD COLUMN image_uuid VARCHAR(36);
 
 UPDATE cover SET image_uuid = (SELECT image_uuid FROM cover_image WHERE cover_id = cover.cover_id);
 
@@ -14,7 +14,9 @@ FOR EACH ROW
 CREATE TABLE users (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(25) NOT NULL,
-  password VARCHAR(255) NOT NULL
+  password VARCHAR(255) NOT NULL,
+  question VARCHAR(255) NOT NULL,
+  answer VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE cover_user (
