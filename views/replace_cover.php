@@ -1,5 +1,11 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/replace_cover.php"; ?>
 
+<?php if (empty($_SESSION['user_id']))
+{
+    header( "Location: login.php" );
+}
+?>
+
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
         <h2 class="text-center">Change cover image</h2>
