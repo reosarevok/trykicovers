@@ -6,6 +6,8 @@ ALTER TABLE cover MODIFY COLUMN image_uuid VARCHAR(36) NOT NULL;
 
 DROP TABLE cover_image;
 
+ALTER TABLE tag ADD UNIQUE tag_name_and_type (tag, tag_type_id);
+
 CREATE TRIGGER before_insert_cover
 BEFORE INSERT ON cover
 FOR EACH ROW

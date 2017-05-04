@@ -248,6 +248,8 @@
                     data: { tag: newTheme, tag_type: 5 }
                 }).done(function (data) {
                     $('#themes').tagsinput('add', { "tag_id": data , "tag": newTheme });
+                }).fail(function () {
+                    alert("The tag " + newTheme + " already exists!");
                 });
             }
 

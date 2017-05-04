@@ -16,5 +16,6 @@ try    {
 }
 catch(Exception $e)
 {
-    echo '<h4>'.$e->getMessage().'</h4>';
+    header('HTTP/1.0 500 Internal Server Error');
+    die ('<h4>'.$e->getMessage().'</h4>');
 }

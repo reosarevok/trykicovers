@@ -27,6 +27,7 @@ CREATE TABLE tag (
   tag_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   tag VARCHAR(255) NOT NULL,
   tag_type_id INT UNSIGNED NOT NULL,
+  UNIQUE KEY tag_name_and_type (tag, tag_type_id),
   CONSTRAINT fk_tag_type FOREIGN KEY (tag_type_id)
   REFERENCES tag_type(tag_type_id));
 
