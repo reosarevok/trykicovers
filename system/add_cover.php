@@ -110,14 +110,21 @@ function choose_shelf ($db, $products) {
         $type = "Artisan";
     }
 
-    $shelf = get_first($db, "SELECT * FROM shelf_space JOIN shelf_type USING (shelf_id) WHERE percentage_filled < 90 AND tag = '$type' ORDER BY percentage_filled DESC");
+    $sth = $db->prepare("SELECT * FROM shelf_space JOIN shelf_type USING (shelf_id) WHERE percentage_filled < 90 AND tag = '$type' ORDER BY percentage_filled DESC");
+    $sth->execute();
+    $shelf = $sth->fetch(PDO::FETCH_ASSOC);
+
     
     if (empty($shelf)) {
-        $shelf = get_first($db, "SELECT * FROM shelf_space WHERE percentage_filled = 0 ORDER BY shelf_id");
+        $sth = $db->prepare("SELECT * FROM shelf_space WHERE percentage_filled = 0 ORDER BY shelf_id");
+        $sth->execute();
+        $shelf = $sth->fetch(PDO::FETCH_ASSOC);
     }
 
     if (empty($shelf)) {
-        $shelf = get_first($db, "SELECT * FROM shelf_space JOIN shelf_type USING (shelf_id) WHERE tag = '$type' ORDER BY percentage_filled ASC");
+        $sth = $db->prepare("SELECT * FROM shelf_space JOIN shelf_type USING (shelf_id) WHERE tag = '$type' ORDER BY percentage_filled ASC");
+        $sth->execute();
+        $shelf = $sth->fetch(PDO::FETCH_ASSOC);
     }
 
     return $shelf["shelf_id"];

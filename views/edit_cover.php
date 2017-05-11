@@ -1,5 +1,11 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/edit_cover.php"; ?>
 
+<?php if (empty($_SESSION['user_id']))
+{
+    header( "Location: login.php" );
+}
+?>
+
 <?php if (empty($cover)): ?>
     <h4 class="text-center">No ID provided or no cover found with that ID</h4>
 
@@ -248,6 +254,8 @@
                     data: { tag: newTheme, tag_type: 5 }
                 }).done(function (data) {
                     $('#themes').tagsinput('add', { "tag_id": data , "tag": newTheme });
+                }).fail(function () {
+                    alert("The tag " + newTheme + " already exists!");
                 });
             }
 

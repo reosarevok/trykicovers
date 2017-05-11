@@ -7,7 +7,7 @@ try    {
         if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             echo $new_id;
         } else {
-            header( "Location: ../tag.php?id=$new_id" );
+            header( "Location: ../tags.php" );
         }
     }
     else {
@@ -16,5 +16,6 @@ try    {
 }
 catch(Exception $e)
 {
-    echo '<h4>'.$e->getMessage().'</h4>';
+    header('HTTP/1.0 500 Internal Server Error');
+    die ('<h4>'.$e->getMessage().'</h4>');
 }

@@ -5,10 +5,13 @@ if ($_POST['password'] != $_POST['passwordcheck']) {
     echo "Passwords didn't match!";
     }
 else {
-    $username = mysqli_real_escape_string($db, $_POST['username']);
-
     $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    mysqli_query($db, "INSERT INTO users (username, password) VALUES ('$username', '$hash')") or exit(mysqli_error($db));
-    $id = mysqli_insert_id($db);
+    $sth = $db2->prepare("INSERT INTO users (username, password, question, answer) VALUES (?, ?, ?, ?)");
+    $sth->bindParam(1, $_POST['username']);
+    $sth->bindParam(2, $hash);
+    $sth->bindParam(3, $_POST['question']);
+    $sth->bindParam(4, $_POST['answer']);
+    $sth->execute();
+    header( "Location: ../login.php" );
 }

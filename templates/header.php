@@ -22,7 +22,9 @@
                             <li><a href="login.php">Log in</a></li>
                         <?php endif; ?>
                         <li><a href="index.php">Home</a></li>
-                        <li><a href="add_cover.php">Add a cover</a></li>
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <li><a href="add_cover.php">Add a cover</a></li>
+                        <?php endif; ?>
                         <li><a href="search.php">Search</a></li>
                         <li><a href="tags.php">Tags</a></li>
                         <li><a href="shelves.php">Shelves</a></li>

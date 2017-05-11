@@ -27,6 +27,7 @@ CREATE TABLE tag (
   tag_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   tag VARCHAR(255) NOT NULL,
   tag_type_id INT UNSIGNED NOT NULL,
+  UNIQUE KEY tag_name_and_type (tag, tag_type_id),
   CONSTRAINT fk_tag_type FOREIGN KEY (tag_type_id)
   REFERENCES tag_type(tag_type_id));
 
@@ -41,8 +42,10 @@ CREATE TABLE cover_tag (
 
 CREATE TABLE users (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(25) NOT NULL,
-  password VARCHAR(255) NOT NULL
+  username VARCHAR(25) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  question VARCHAR(255) NOT NULL,
+  answer VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE cover_user (

@@ -4,7 +4,9 @@ if (!empty($_GET["id"])){
     $id = $_GET["id"];
     $cover = $db2->cover()->where("cover_id", $id)->fetch();
     $reservations = $db2->cover_user()->where("cover_id", $id);
-    $user_reservation = $db2->cover_user()->where(array("cover_id" => $id, "user_id" => $_SESSION['user_id']))->fetch();
+    if (!(empty($_SESSION['user_id']))) {
+       $user_reservation = $db2->cover_user()->where(array("cover_id" => $id, "user_id" => $_SESSION['user_id']))->fetch();
+    }
     $tag_types = $db2->tag_type();
     $tags = array();
 
