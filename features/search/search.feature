@@ -6,7 +6,7 @@ Feature: Search for covers
   @javascript
   Scenario: Try to search for a cover that we're out of
     Given I go to "/search.php"
-    And I fill in "title" with "Test"
+    When I fill in "title" with "Test"
     And I press "Enter"
     And I wait 1
     Then the results should not include the test cover
@@ -14,7 +14,7 @@ Feature: Search for covers
   @javascript
   Scenario: Try to search for a cover that we're out of, while specifically allowing it
     Given I go to "/search.php"
-    And I fill in "title" with "Test"
+    When I fill in "title" with "Test"
     And I check "Also show used covers"
     And I press "Enter"
     And I wait 1
@@ -23,7 +23,7 @@ Feature: Search for covers
   @javascript
   Scenario: Try to search for a cover using tags
     Given I go to "/search.php"
-    And I click on the header "For which products?"
+    When I click on the header "For which products?"
     And I check "Artisan"
     And I click on the header "What width?"
     And I check "12 to 14 cm"
@@ -35,7 +35,7 @@ Feature: Search for covers
   @javascript
   Scenario: Try to search for a cover using the wrong tags
     Given I go to "/search.php"
-    And I click on the header "For which products?"
+    When I click on the header "For which products?"
     And I check "Artisan"
     And I click on the header "What width?"
     And I check "More than 14 cm"
