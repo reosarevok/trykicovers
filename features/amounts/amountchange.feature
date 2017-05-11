@@ -4,11 +4,7 @@ Feature: Change amounts
   I need to be able to change the amounts of covers and reservations
 
   Background:
-    Given I am on "/"
-    And I follow "Log in"
-    And I fill in "username" with "test"
-    And I fill in "password" with "test"
-    And I press "Login"
+    Given I am logged in
     And I go to "/cover.php?id=33"
     And I save a screenshot to "shot.png"
     Then I break

@@ -28,4 +28,20 @@ class FeatureContext extends MinkContext implements Context
         sleep($sec);
     }
 
+    /**
+     * @Then /^the results should include the test cover$/
+     */
+    public function theResultsShouldIncludeTheTestCover()
+    {
+        $this->assertElementOnPage( "a[href='cover.php?id=33']" );
+    }
+
+    /**
+     * @Then /^the results should not include the test cover$/
+     */
+    public function theResultsShouldNotIncludeTheTestCover()
+    {
+        $this->assertElementNotOnPage( "a[href='cover.php?id=33']" );
+    }
+
 }

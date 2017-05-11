@@ -55,6 +55,17 @@ class AmountTestingContext extends MinkContext implements Context
     }
 
     /**
+     * @Given I am logged in
+     */
+    public function iAmLoggedIn()
+    {
+        $this->visit("http://localhost/trykicovers/login.php");
+        $this->fillField("username", "test");
+        $this->fillField("password", "test");
+        $this->pressButton("login");
+    }
+
+    /**
      * @BeforeScenario
      */
     public function setAmountToZero() {

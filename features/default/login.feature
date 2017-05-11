@@ -7,7 +7,6 @@ Feature: Log in
     Given I am on "/"
     And I follow "Log in"
 
-##  @javascript
   Scenario: Try to log in with the right password
     Given I fill in "username" with "reosarevok"
     And I fill in "password" with "sarevok1"

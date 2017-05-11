@@ -7,10 +7,14 @@ default:
       browser_name: 'chrome'
   suites:
     default:
+       contexts:
+         - FeatureContext
+       paths: [ %paths.base%/features/default ]
+    amounts:
+       contexts:
+         - AmountTestingContext
+       paths: [ %paths.base%/features/amounts ]
+    search:
       contexts:
         - FeatureContext
-      paths: [ %paths.base%/features/default ]
-    amounts:
-      contexts:
-        - AmountTestingContext
-      paths: [ %paths.base%/features/amounts ]
+      paths: [ %paths.base%/features/search ]
