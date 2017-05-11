@@ -28,7 +28,7 @@
                 <div class="checkboxes hidden">
                     <?php foreach ($widths as $width): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="widths[]" id="<?= $width['tag'] ?>" value="<?= $width['tag_id'] ?>">
+                            <input type="checkbox" name="tag[]" id="<?= $width['tag'] ?>" value="<?= $width['tag_id'] ?>">
                             <label for="<?= $width['tag'] ?>"><?= $width['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -39,7 +39,7 @@
                 <div class="checkboxes hidden">
                     <?php foreach ($heights as $height): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="heights[]" id="<?= $height['tag'] ?>" value="<?= $height['tag_id'] ?>">
+                            <input type="checkbox" name="tag[]" id="<?= $height['tag'] ?>" value="<?= $height['tag_id'] ?>">
                             <label for="<?= $height['tag'] ?>"><?= $height['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -50,7 +50,7 @@
                 <div class="checkboxes hidden">
                     <?php foreach ($thicknesses as $thickness): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="thicknesses[]" id="<?= $thickness['tag'] ?>" value="<?= $thickness['tag_id'] ?>" >
+                            <input type="checkbox" name="tag[]" id="<?= $thickness['tag'] ?>" value="<?= $thickness['tag_id'] ?>" >
                             <label for="<?= $thickness['tag'] ?>"><?= $thickness['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
