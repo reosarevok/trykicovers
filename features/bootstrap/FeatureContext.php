@@ -22,6 +22,23 @@ class FeatureContext extends MinkContext implements Context
     }
 
     /**
+     * Click some text
+     *
+     * @When /^I click on the header "([^"]*)"$/
+     */
+    public function iClickOnTheHeader($text)
+    {
+        $session = $this->getSession();
+        $element = $session->getPage()->find('css', sprintf('.checkbox-head:contains("%s")', $text));
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Cannot find text: "%s"', $text));
+        }
+
+        $element->click();
+
+    }
+
+    /**
      * @Then I wait :sec
      */
     public function wait($sec){
