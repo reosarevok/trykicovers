@@ -5,41 +5,33 @@ Feature: Search for covers
 
   @javascript
   Scenario: Try to search for a cover that we're out of
-    Given I go to "/search.php"
-    When I fill in "title" with "Test"
-    And I press "Enter"
-    And I wait 1
+    Given I am on the search page
+    When I search for the title "Test"
+    And I run the search
     Then the results should not include the test cover
 
   @javascript
   Scenario: Try to search for a cover that we're out of, while specifically allowing it
-    Given I go to "/search.php"
-    When I fill in "title" with "Test"
-    And I check "Also show used covers"
-    And I press "Enter"
-    And I wait 1
+    Given I am on the search page
+    When I search for the title "Test"
+    And I allow showing used covers
+    And I run the search
     Then the results should include the test cover
 
   @javascript
   Scenario: Try to search for a cover using tags
-    Given I go to "/search.php"
-    When I click on the header "For which products?"
-    And I check "Artisan"
-    And I click on the header "What width?"
-    And I check "12 to 14 cm"
-    And I check "Also show used covers"
-    And I press "Enter"
-    And I wait 1
+    Given I am on the search page
+    When I search for the product "Artisan"
+    And I search for the width "12 to 14 cm"
+    And I allow showing used covers
+    And I run the search
     Then the results should include the test cover
 
   @javascript
   Scenario: Try to search for a cover using the wrong tags
-    Given I go to "/search.php"
-    When I click on the header "For which products?"
-    And I check "Artisan"
-    And I click on the header "What width?"
-    And I check "More than 14 cm"
-    And I check "Also show used covers"
-    And I press "Enter"
-    And I wait 1
+    Given I am on the search page
+    When I search for the product "Artisan"
+    And I search for the width "More than 14 cm"
+    And I allow showing used covers
+    And I run the search
     Then the results should not include the test cover

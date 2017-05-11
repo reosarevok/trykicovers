@@ -61,4 +61,56 @@ class FeatureContext extends MinkContext implements Context
         $this->assertElementNotOnPage( "a[href='cover.php?id=33']" );
     }
 
+    /**
+     * @Given /^I am on the search page$/
+     */
+    public function iAmOnTheSearchPage()
+    {
+        $this->visit("search.php");
+    }
+
+    /**
+     * @Given /^I allow showing used covers$/
+     */
+    public function iAllowShowingUsedCovers()
+    {
+        $this->checkOption( "Also show used covers");
+    }
+
+    /**
+     * @Given /^I run the search$/
+     */
+    public function iRunTheSearch()
+    {
+        $this->pressButton("Enter");
+        $this->wait(1);
+    }
+
+    /**
+     * @When /^I search for the title "([^"]*)"$/
+     */
+    public function iSearchForTheTitle($title)
+    {
+        $this->fillField("title", $title);
+    }
+
+    /**
+     * @When /^I search for the product "([^"]*)"$/
+     */
+    public function iSearchForTheProduct($product)
+    {
+        $this->iClickOnTheHeader("For which products?");
+        $this->checkOption($product);
+    }
+
+    /**
+     * @Given /^I search for the width "([^"]*)"$/
+     */
+    public function iSearchForTheWidth($width)
+    {
+        $this->iClickOnTheHeader("What width?");
+        $this->checkOption($width);
+    }
+
+
 }
