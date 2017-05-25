@@ -16,10 +16,10 @@ catch(Exception $e)
 
 function edit_existing_cover($params)
 {
-    global $db2;
+    global $db;
     $tags = Array();
     $cover_id = $params['cover_id'];
-    $cover = $db2->cover()->where("cover_id", $cover_id);
+    $cover = $db->cover()->where("cover_id", $cover_id);
     $used_tags = $cover->cover_tagList()->tag();
 
     if (empty($params["products"])) {

@@ -87,7 +87,7 @@
                     <ul class="text-left">
                     <?php foreach ($reservations as $reservation): ?>
                         <?php if ((empty($_SESSION['user_id']) or ($_SESSION['user_id'] != $reservation->user_id)) and ($reservation->amount > 0)): ?>
-                            <?php $user = $db2->users()->where("id", $reservation->user_id)->fetch(); ?>
+                            <?php $user = $db->users()->where("id", $reservation->user_id)->fetch(); ?>
                             <li><?= $user->username ?> (<?= $reservation->amount ?>)</li>
                         <?php endif; ?>
                     <?php endforeach; ?>

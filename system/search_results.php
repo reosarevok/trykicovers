@@ -29,7 +29,7 @@ if (!empty($_POST)) {
 
     if (!empty($parameters)) {
         $parameters = implode(" AND ", $parameters);
-        $sth = $db2->prepare("SELECT * FROM cover $joins WHERE $parameters");
+        $sth = $db->prepare("SELECT * FROM cover $joins WHERE $parameters");
         $sth->execute();
         $results = $sth->fetchAll();
         //TODO: move this to use lessql somehow
@@ -39,7 +39,7 @@ if (!empty($_POST)) {
         else {
             foreach ($results as $result) {
                 $id = $result['cover_id'];
-                $cover = $db2->cover()->where("cover_id", $id)->fetch();
+                $cover = $db->cover()->where("cover_id", $id)->fetch();
                 if ((!empty($_POST['show_all'])) || $result['amount'] > 0) {
                     display_cover($cover);
                 }

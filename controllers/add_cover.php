@@ -1,7 +1,7 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT']."/trykicovers/system/database.php";
 
-$all_tags = $db2->tag_type()->tagList();
+$all_tags = $db->tag_type()->tagList();
 $colors = $all_tags->where("tag_type_id", 1);
 $languages = $all_tags->where("tag_type_id", 2);
 $products = $all_tags->where("tag_type_id", 3);

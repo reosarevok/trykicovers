@@ -3,7 +3,7 @@ require $_SERVER['DOCUMENT_ROOT']."/trykicovers/system/database.php";
 
 $tags = array();
 
-$tag_types = $db2->tag_type();
+$tag_types = $db->tag_type();
 
 
 foreach ($tag_types as $tag_type) {

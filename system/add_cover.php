@@ -28,7 +28,7 @@ else
 
 function insert_new_cover($params)
 {
-    global $db2;
+    global $db;
     $tags = Array();
 
     if (empty($params["products"])) {
@@ -77,7 +77,7 @@ function insert_new_cover($params)
         $tags = array_merge($tags, $params["themes"]);
     }
 
-    $shelf = choose_shelf($db2, $params["products"]);
+    $shelf = choose_shelf($db, $params["products"]);
 
     $new_id = add_cover($params["title"], $params["title_transliteration"], $params["translation"],
         $params["author"], $params["author_transliteration"], $params["comment"], 1, $shelf);
@@ -86,7 +86,7 @@ function insert_new_cover($params)
         add_tag_to_cover($tag, $new_id);
     }
 
-    $uuid = $db2->cover()->where("cover_id", $new_id)->fetch()->image_uuid;
+    $uuid = $db->cover()->where("cover_id", $new_id)->fetch()->image_uuid;
 
     upload_file($uuid);
 

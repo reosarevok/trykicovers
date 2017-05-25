@@ -7,7 +7,7 @@ if ($_POST['password'] != $_POST['passwordcheck']) {
 else {
     $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $sth = $db2->prepare("INSERT INTO users (username, password, question, answer) VALUES (?, ?, ?, ?)");
+    $sth = $db->prepare("INSERT INTO users (username, password, question, answer) VALUES (?, ?, ?, ?)");
     $sth->bindParam(1, $_POST['username']);
     $sth->bindParam(2, $hash);
     $sth->bindParam(3, $_POST['question']);
