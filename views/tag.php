@@ -1,4 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/tag.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/trykicovers/controllers/tag.php"; ?>
 
 <div class="row">
     <div class="col-xs-12">
@@ -10,7 +10,8 @@
                 foreach ($covers as $cover) {
                     if ($cover->amount > 0) {
                         display_cover($cover);
-                    }                }
+                    }
+                }
             } else {
                 echo "<p>No covers with this tag</p>";
             } ?>

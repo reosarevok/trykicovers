@@ -24,7 +24,7 @@
                 <input id="answer" type="text" name="answer" required/>
             </p>
             <p>
-                <input type="submit" name="register" value="Register" />
+                <input type="submit" name="register" value="Register"/>
             </p>
         </form>
     </div>

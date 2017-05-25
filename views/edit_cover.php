@@ -1,8 +1,7 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/edit_cover.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/trykicovers/controllers/edit_cover.php"; ?>
 
-<?php if (empty($_SESSION['user_id']))
-{
-    header( "Location: login.php" );
+<?php if (empty($_SESSION['user_id'])) {
+    header("Location: login.php");
 }
 ?>
 
@@ -16,53 +15,60 @@
             <h2 class="text-center">Edit cover info</h2>
             <div class="row image">
                 <?php $source = 'static/images/' . $cover['image_uuid'] . '-thumb.jpg'; ?>
-                <img class="center-block small-image cover_image" src="<?= $source ?>" />
+                <img class="center-block small-image cover_image" src="<?= $source ?>"/>
             </div>
             <form action="system/edit_cover.php" method="post">
                 <input type="hidden" name="cover_id" value="<?= $cover['cover_id'] ?>">
 
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input class="form-control" type="text" name="title" id="title" value="<?= $cover['title'] ?>" required />
+                    <input class="form-control" type="text" name="title" id="title" value="<?= $cover['title'] ?>"
+                           required/>
                 </div>
 
                 <?php if (empty($cover['transliterated_title'])): ?>
                     <div class="form-group hidden" id="title_transliteration_div">
                         <label for="title_transliteration">Transliterated title</label>
-                        <input class="form-control" type="text" name="title_transliteration" id="title_transliteration" />
+                        <input class="form-control" type="text" name="title_transliteration"
+                               id="title_transliteration"/>
                     </div>
                 <?php else: ?>
                     <div class="form-group" id="title_transliteration_div">
                         <label for="title_transliteration">Transliterated title</label>
-                        <input class="form-control" type="text" name="title_transliteration" id="title_transliteration" value="<?= $cover['transliterated_title'] ?>" />
+                        <input class="form-control" type="text" name="title_transliteration" id="title_transliteration"
+                               value="<?= $cover['transliterated_title'] ?>"/>
                     </div>
                 <?php endif; ?>
 
                 <div class="form-group">
                     <label for="translation">Translated title</label>
-                    <input class="form-control" type="text" name="translation" id="translation" value="<?= $cover['translated_title'] ?>" />
+                    <input class="form-control" type="text" name="translation" id="translation"
+                           value="<?= $cover['translated_title'] ?>"/>
                 </div>
 
                 <div class="form-group">
                     <label for="author">Author</label>
-                    <input class="form-control" type="text" name="author" id="author" value="<?= $cover['author'] ?>" />
+                    <input class="form-control" type="text" name="author" id="author" value="<?= $cover['author'] ?>"/>
                 </div>
 
                 <?php if (empty($cover['transliterated_author'])): ?>
                     <div class="form-group hidden" id="author_transliteration_div">
                         <label for="author_transliteration">Transliterated author</label>
-                        <input class="form-control" type="text" name="author_transliteration" id="author_transliteration" />
+                        <input class="form-control" type="text" name="author_transliteration"
+                               id="author_transliteration"/>
                     </div>
                 <?php else: ?>
                     <div class="form-group" id="author_transliteration_div">
                         <label for="author_transliteration">Transliterated author</label>
-                        <input class="form-control" type="text" name="author_transliteration" id="author_transliteration" value="<?= $cover['transliterated_author'] ?>" />
+                        <input class="form-control" type="text" name="author_transliteration"
+                               id="author_transliteration" value="<?= $cover['transliterated_author'] ?>"/>
                     </div>
                 <?php endif; ?>
 
                 <div class="form-group">
                     <label for="comment">Comments</label>
-                    <input class="form-control" type="text" name="comment" id="comment" value="<?= $cover['comment'] ?>" />
+                    <input class="form-control" type="text" name="comment" id="comment"
+                           value="<?= $cover['comment'] ?>"/>
                 </div>
 
                 <div class="form-group">
@@ -79,7 +85,8 @@
                     <div class="checkboxes">
                         <?php foreach ($products as $product): ?>
                             <div class="checkbox-inline">
-                                <input type="checkbox" name="products[]" id="<?= $product['tag'] ?>" value="<?= $product['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $product['tag_id'])->fetch())) ? "checked" : '' ?>>
+                                <input type="checkbox" name="products[]" id="<?= $product['tag'] ?>"
+                                       value="<?= $product['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $product['tag_id'])->fetch())) ? "checked" : '' ?>>
                                 <label for="<?= $product['tag'] ?>"><?= $product['tag'] ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -91,7 +98,9 @@
                     <div class="checkboxes">
                         <?php foreach ($widths as $width): ?>
                             <div class="radio-inline">
-                                <input type="radio" name="widths[]" id="<?= $width['tag'] ?>" value="<?= $width['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $width['tag_id'])->fetch())) ? "checked" : '' ?> required>
+                                <input type="radio" name="widths[]" id="<?= $width['tag'] ?>"
+                                       value="<?= $width['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $width['tag_id'])->fetch())) ? "checked" : '' ?>
+                                       required>
                                 <label for="<?= $width['tag'] ?>"><?= $width['tag'] ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -103,7 +112,9 @@
                     <div class="checkboxes">
                         <?php foreach ($heights as $height): ?>
                             <div class="radio-inline">
-                                <input type="radio" name="heights[]" id="<?= $height['tag'] ?>" value="<?= $height['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $height['tag_id'])->fetch())) ? "checked" : '' ?> required>
+                                <input type="radio" name="heights[]" id="<?= $height['tag'] ?>"
+                                       value="<?= $height['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $height['tag_id'])->fetch())) ? "checked" : '' ?>
+                                       required>
                                 <label for="<?= $height['tag'] ?>"><?= $height['tag'] ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -115,7 +126,9 @@
                     <div class="checkboxes">
                         <?php foreach ($thicknesses as $thickness): ?>
                             <div class="radio-inline">
-                                <input type="radio" name="thicknesses[]" id="<?= $thickness['tag'] ?>" value="<?= $thickness['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $thickness['tag_id'])->fetch())) ? "checked" : '' ?> required>
+                                <input type="radio" name="thicknesses[]" id="<?= $thickness['tag'] ?>"
+                                       value="<?= $thickness['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $thickness['tag_id'])->fetch())) ? "checked" : '' ?>
+                                       required>
                                 <label for="<?= $thickness['tag'] ?>"><?= $thickness['tag'] ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -127,7 +140,8 @@
                     <div class="checkboxes">
                         <?php foreach ($languages as $language): ?>
                             <div class="checkbox-inline">
-                                <input type="checkbox" name="languages[]" id="<?= $language['tag'] ?>" value="<?= $language['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $language['tag_id'])->fetch())) ? "checked" : '' ?>>
+                                <input type="checkbox" name="languages[]" id="<?= $language['tag'] ?>"
+                                       value="<?= $language['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $language['tag_id'])->fetch())) ? "checked" : '' ?>>
                                 <label for="<?= $language['tag'] ?>"><?= $language['tag'] ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -139,7 +153,8 @@
                     <div class="checkboxes">
                         <?php foreach ($materials as $material): ?>
                             <div class="checkbox-inline">
-                                <input type="checkbox" name="materials[]" id="<?= $material['tag'] ?>" value="<?= $material['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $material['tag_id'])->fetch())) ? "checked" : '' ?>>
+                                <input type="checkbox" name="materials[]" id="<?= $material['tag'] ?>"
+                                       value="<?= $material['tag_id'] ?>" <?= !(empty($used_tags->where('tag_id', $material['tag_id'])->fetch())) ? "checked" : '' ?>>
                                 <label for="<?= $material['tag'] ?>"><?= $material['tag'] ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -164,14 +179,14 @@
     </div>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('.tt-input').keydown(function(event){
-                if(event.keyCode == 13) {
+        $(document).ready(function () {
+            $('.tt-input').keydown(function (event) {
+                if (event.keyCode == 13) {
                     event.preventDefault();
                 }
             });
 
-            $("#title").blur(function() {
+            $("#title").blur(function () {
                 var word = $(this).val();
                 var title = transliteration.transliterate(word);
                 if (word != title) {
@@ -180,7 +195,7 @@
                 }
             });
 
-            $("#author").blur(function() {
+            $("#author").blur(function () {
                 var word = $(this).val();
                 var author = transliteration.transliterate(word);
                 if (word != author) {
@@ -204,7 +219,7 @@
             itemText: 'tag',
             typeaheadjs: [{
                 hint: false
-            },{
+            }, {
                 name: 'themes',
                 displayKey: 'tag',
                 source: themes.ttAdapter()
@@ -214,8 +229,8 @@
         var used_themes = <?= json_encode($used_themes) ?>;
         console.log(used_themes);
         used_themes.forEach(function (theme) {
-            $('#themes').tagsinput('add', { "tag_id": theme['tag_id'] , "tag": theme['tag'] });
-        })
+            $('#themes').tagsinput('add', {"tag_id": theme['tag_id'], "tag": theme['tag']});
+        });
 
         var colors = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('tag'),
@@ -230,7 +245,7 @@
             itemText: 'tag',
             typeaheadjs: [{
                 hint: false
-            },{
+            }, {
                 name: 'colors',
                 displayKey: 'tag',
                 source: colors.ttAdapter()
@@ -240,20 +255,20 @@
         var used_colors = <?= json_encode($used_colors) ?>;
         console.log(used_colors);
         used_colors.forEach(function (color) {
-            $('#colors').tagsinput('add', { "tag_id": color['tag_id'] , "tag": color['tag'] });
+            $('#colors').tagsinput('add', {"tag_id": color['tag_id'], "tag": color['tag']});
         });
 
 
-        $("#add-theme").click(function() {
+        $("#add-theme").click(function () {
             var newTheme = $(".tt-input").eq(1).typeahead('val');
             var confirm = window.confirm("You want to add a new theme '" + newTheme + "'?");
             if (confirm) {
                 $.ajax({
                     type: "post",
                     url: "system/add_tag.php",
-                    data: { tag: newTheme, tag_type: 5 }
+                    data: {tag: newTheme, tag_type: 5}
                 }).done(function (data) {
-                    $('#themes').tagsinput('add', { "tag_id": data , "tag": newTheme });
+                    $('#themes').tagsinput('add', {"tag_id": data, "tag": newTheme});
                 }).fail(function () {
                     alert("The tag " + newTheme + " already exists!");
                 });

@@ -5,7 +5,7 @@
     <title>Printing Museum Cover System</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="vendor/bootstrap-tagsinput/bootstrap-tagsinput-css/bootstrap-tagsinput.css" />
+    <link rel="stylesheet" href="vendor/bootstrap-tagsinput/bootstrap-tagsinput-css/bootstrap-tagsinput.css"/>
     <link href="static/style/style.css" rel="stylesheet" type="text/css">
     <script src="vendor/jquery/jquery/jquery-3.1.1.js"></script>
     <script src="vendor/bootstrap-tagsinput/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
@@ -17,7 +17,7 @@
     <?php session_start(); ?>
     <?php require_once "header.php"; ?>
     <main>
-    <?php require_once $_SERVER['DOCUMENT_ROOT']."/trykicovers/views/$page.php"; ?>
+        <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/trykicovers/views/$page.php"; ?>
     </main>
     <?php require_once "footer.php"; ?>
 </div>

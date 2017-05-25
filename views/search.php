@@ -1,4 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/search.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/trykicovers/controllers/search.php"; ?>
 
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
@@ -6,18 +6,19 @@
         <form id="search" action="system/search_results.php" method="post">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input class="form-control" type="text" name="title" id="title" />
+                <input class="form-control" type="text" name="title" id="title"/>
             </div>
             <div class="form-group">
                 <label for="author">Author</label>
-                <input class="form-control" type="text" name="author" id="author" />
+                <input class="form-control" type="text" name="author" id="author"/>
             </div>
             <fieldset class="form-group">
                 <legend class="checkbox-head">For which products?</legend>
                 <div class="checkboxes hidden">
                     <?php foreach ($products as $product): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="tag[]" id="<?= $product['tag'] ?>" value="<?= $product['tag_id'] ?>">
+                            <input type="checkbox" name="tag[]" id="<?= $product['tag'] ?>"
+                                   value="<?= $product['tag_id'] ?>">
                             <label for="<?= $product['tag'] ?>"><?= $product['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -28,7 +29,8 @@
                 <div class="checkboxes hidden">
                     <?php foreach ($widths as $width): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="tag[]" id="<?= $width['tag'] ?>" value="<?= $width['tag_id'] ?>">
+                            <input type="checkbox" name="tag[]" id="<?= $width['tag'] ?>"
+                                   value="<?= $width['tag_id'] ?>">
                             <label for="<?= $width['tag'] ?>"><?= $width['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -39,7 +41,8 @@
                 <div class="checkboxes hidden">
                     <?php foreach ($heights as $height): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="tag[]" id="<?= $height['tag'] ?>" value="<?= $height['tag_id'] ?>">
+                            <input type="checkbox" name="tag[]" id="<?= $height['tag'] ?>"
+                                   value="<?= $height['tag_id'] ?>">
                             <label for="<?= $height['tag'] ?>"><?= $height['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -50,7 +53,8 @@
                 <div class="checkboxes hidden">
                     <?php foreach ($thicknesses as $thickness): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="tag[]" id="<?= $thickness['tag'] ?>" value="<?= $thickness['tag_id'] ?>" >
+                            <input type="checkbox" name="tag[]" id="<?= $thickness['tag'] ?>"
+                                   value="<?= $thickness['tag_id'] ?>">
                             <label for="<?= $thickness['tag'] ?>"><?= $thickness['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -61,7 +65,8 @@
                 <div class="checkboxes hidden">
                     <?php foreach ($languages as $language): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="tag[]" id="<?= $language['tag'] ?>" value="<?= $language['tag_id'] ?>">
+                            <input type="checkbox" name="tag[]" id="<?= $language['tag'] ?>"
+                                   value="<?= $language['tag_id'] ?>">
                             <label for="<?= $language['tag'] ?>"><?= $language['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -72,7 +77,8 @@
                 <div class="checkboxes hidden">
                     <?php foreach ($shelves as $shelf): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="shelf[]" id="<?= $shelf['shelf'] ?>" value="<?= $shelf['shelf_id'] ?>">
+                            <input type="checkbox" name="shelf[]" id="<?= $shelf['shelf'] ?>"
+                                   value="<?= $shelf['shelf_id'] ?>">
                             <label for="<?= $shelf['shelf'] ?>"><?= $shelf['shelf'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -83,7 +89,8 @@
                 <div class="checkboxes hidden">
                     <?php foreach ($materials as $material): ?>
                         <div class="checkbox-inline">
-                            <input type="checkbox" name="tag[]" id="<?= $material['tag'] ?>" value="<?= $material['tag_id'] ?>">
+                            <input type="checkbox" name="tag[]" id="<?= $material['tag'] ?>"
+                                   value="<?= $material['tag_id'] ?>">
                             <label for="<?= $material['tag'] ?>"><?= $material['tag'] ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -109,22 +116,22 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('.tt-input').keydown(function(event){
-            if(event.keyCode == 13) {
+    $(document).ready(function () {
+        $('.tt-input').keydown(function (event) {
+            if (event.keyCode == 13) {
                 event.preventDefault();
             }
         });
 
-        $('.checkbox-head').click(function(){
+        $('.checkbox-head').click(function () {
             $(this).siblings('.checkboxes').toggleClass('hidden');
         });
 
-        $('#search-head').click(function(){
+        $('#search-head').click(function () {
             $('#search').toggleClass('hidden');
         });
 
-        $("#search").submit(function( event ) {
+        $("#search").submit(function (event) {
             var data = $(this).serializeArray();
             event.preventDefault();
             $("#results").load("system/search_results.php", data);
@@ -146,7 +153,7 @@
         itemText: 'tag',
         typeaheadjs: [{
             hint: false
-        },{
+        }, {
             name: 'themes',
             displayKey: 'tag',
             source: themes.ttAdapter()
@@ -165,7 +172,7 @@
         itemText: 'tag',
         typeaheadjs: [{
             hint: false
-        },{
+        }, {
             name: 'colors',
             displayKey: 'tag',
             source: colors.ttAdapter()

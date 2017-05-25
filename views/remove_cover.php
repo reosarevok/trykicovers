@@ -1,8 +1,7 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/remove_cover.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/trykicovers/controllers/remove_cover.php"; ?>
 
-<?php if (empty($_SESSION['user_id']))
-{
-    header( "Location: login.php" );
+<?php if (empty($_SESSION['user_id'])) {
+    header("Location: login.php");
 }
 ?>
 
@@ -25,11 +24,12 @@
 
             <div class="row image">
                 <?php $source = 'static/images/' . $cover->image_uuid . '-thumb.jpg'; ?>
-                <img class="center-block small-image cover_image" src="<?= $source ?>" />
+                <img class="center-block small-image cover_image" src="<?= $source ?>"/>
             </div>
 
             <div class="row delete-button text-center">
-                <a class="btn btn-danger" role="button" href="system/remove_cover.php?id=<?= $cover->cover_id ?>">Yes, remove this!</a>
+                <a class="btn btn-danger" role="button" href="system/remove_cover.php?id=<?= $cover->cover_id ?>">Yes,
+                    remove this!</a>
             </div>
         </div>
     </div>

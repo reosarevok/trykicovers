@@ -1,4 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/password_recovery.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/trykicovers/controllers/password_recovery.php"; ?>
 
 <div class="row">
     <div class="col-xs-12">
@@ -19,7 +19,7 @@
                 <input id="passwordcheck" type="password" name="passwordcheck" required/>
             </p>
             <p>
-                <input type="submit" name="register" value="Change password" />
+                <input type="submit" name="register" value="Change password"/>
             </p>
         </form>
     </div>

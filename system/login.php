@@ -6,7 +6,7 @@ $user = $db->users()->where('username', $_POST['username'])->fetch();
 if (password_verify($_POST['password'], $user->password)) {
     $_SESSION['username'] = $user->username;
     $_SESSION['user_id'] = $user->id;
-    header( "Location: ../index.php" );
+    header("Location: ../index.php");
 } else {
     echo "That was WRONG!";
 }

@@ -59,10 +59,10 @@
   "require": {
     "morris/lessql": "~0.3",
     "jquery/jquery": "~3.1.1",
-    "bootstrap-tagsinput/bootstrap-tagsinput" : "0.8.0",
-    "bootstrap-tagsinput/bootstrap-tagsinput-css" : "0.8.0",
-    "typeahead.js/typeahead.js" : "0.11.1",
-    "transliteration.cyr/transliteration.cyr" : "1.0.5",
+    "bootstrap-tagsinput/bootstrap-tagsinput": "0.8.0",
+    "bootstrap-tagsinput/bootstrap-tagsinput-css": "0.8.0",
+    "typeahead.js/typeahead.js": "0.11.1",
+    "transliteration.cyr/transliteration.cyr": "1.0.5",
     "twbs/bootstrap": "^3.3"
   }
 }

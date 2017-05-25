@@ -3,26 +3,19 @@ require_once "database.php";
 require_once "upload_file.php";
 
 
-if(!isset($_FILES['cover_image']) || !(is_uploaded_file($_FILES['cover_image']['tmp_name'])))
-{
+if (!isset($_FILES['cover_image']) || !(is_uploaded_file($_FILES['cover_image']['tmp_name']))) {
     echo '<p>Please select a file</p>';
-}
-else if (@getimagesize($_FILES['cover_image']['tmp_name']) == false) {
+} else if (@getimagesize($_FILES['cover_image']['tmp_name']) == false) {
     echo '<p>That file is not an image!</p>';
-}
-else
-{
-    try    {
+} else {
+    try {
         if (!empty($_POST)) {
-           echo insert_new_cover($_POST);
-        }
-        else {
+            echo insert_new_cover($_POST);
+        } else {
             echo '<h4>Please add some data</h4>';
         }
-    }
-    catch(Exception $e)
-    {
-        echo '<h4>'.$e->getMessage().'</h4>';
+    } catch (Exception $e) {
+        echo '<h4>' . $e->getMessage() . '</h4>';
     }
 }
 
@@ -90,23 +83,21 @@ function insert_new_cover($params)
 
     upload_file($uuid);
 
-    header( "Location: ../cover.php?id=$new_id" );
+    header("Location: ../cover.php?id=$new_id");
 
 }
 
 
-function choose_shelf ($db, $products) {
+function choose_shelf($db, $products)
+{
 
     if (in_array(23, $products)) {
         $type = "Sherlock";
-    }
-    else if (in_array(21, $products)) {
+    } else if (in_array(21, $products)) {
         $type = "Classic";
-    }
-    else if (in_array(20, $products)) {
+    } else if (in_array(20, $products)) {
         $type = "College";
-    }
-    else if (in_array(22, $products)) {
+    } else if (in_array(22, $products)) {
         $type = "Artisan";
     }
 
@@ -114,7 +105,7 @@ function choose_shelf ($db, $products) {
     $sth->execute();
     $shelf = $sth->fetch(PDO::FETCH_ASSOC);
 
-    
+
     if (empty($shelf)) {
         $sth = $db->prepare("SELECT * FROM shelf_space WHERE percentage_filled = 0 ORDER BY shelf_id");
         $sth->execute();

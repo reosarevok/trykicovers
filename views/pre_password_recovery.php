@@ -8,7 +8,7 @@
                 <input id="username" type="text" name="username" required/>
             </p>
             <p>
-                <input type="submit" name="next" value="Next" />
+                <input type="submit" name="next" value="Next"/>
             </p>
         </form>
     </div>

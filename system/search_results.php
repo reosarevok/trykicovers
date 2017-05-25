@@ -35,8 +35,7 @@ if (!empty($_POST)) {
         //TODO: move this to use lessql somehow
         if (empty($results)) {
             echo "We didn't find anything like that. Sorry!";
-        }
-        else {
+        } else {
             foreach ($results as $result) {
                 $id = $result['cover_id'];
                 $cover = $db->cover()->where("cover_id", $id)->fetch();
@@ -45,8 +44,7 @@ if (!empty($_POST)) {
                 }
             }
         }
-    }
-    else {
+    } else {
         echo "You need to search for *something*, duh!";
     }
 }

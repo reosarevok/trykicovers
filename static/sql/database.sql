@@ -1,62 +1,68 @@
 /*Table creation*/
 
 CREATE TABLE shelf (
-  shelf_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  shelf VARCHAR(255) NOT NULL,
-  shelf_size INT UNSIGNED NOT NULL);
+  shelf_id   INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  shelf      VARCHAR(255) NOT NULL,
+  shelf_size INT UNSIGNED NOT NULL
+);
 
 CREATE TABLE cover (
-  cover_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  transliterated_title VARCHAR(255),
-  translated_title VARCHAR(255),
-  author VARCHAR(255),
+  cover_id              INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  title                 VARCHAR(255) NOT NULL,
+  transliterated_title  VARCHAR(255),
+  translated_title      VARCHAR(255),
+  author                VARCHAR(255),
   transliterated_author VARCHAR(255),
-  comment TEXT,
-  amount INT UNSIGNED NOT NULL,
-  shelf_id INT UNSIGNED NOT NULL,
-  image_uuid VARCHAR(36) NOT NULL,
+  comment               TEXT,
+  amount                INT UNSIGNED NOT NULL,
+  shelf_id              INT UNSIGNED NOT NULL,
+  image_uuid            VARCHAR(36)  NOT NULL,
   CONSTRAINT fk_shelf FOREIGN KEY (shelf_id)
-  REFERENCES shelf(shelf_id));
+  REFERENCES shelf (shelf_id)
+);
 
 CREATE TABLE tag_type (
   tag_type_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  tag_type VARCHAR(255) NOT NULL);
+  tag_type    VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE tag (
-  tag_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  tag VARCHAR(255) NOT NULL,
+  tag_id      INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  tag         VARCHAR(255) NOT NULL,
   tag_type_id INT UNSIGNED NOT NULL,
   UNIQUE KEY tag_name_and_type (tag, tag_type_id),
   CONSTRAINT fk_tag_type FOREIGN KEY (tag_type_id)
-  REFERENCES tag_type(tag_type_id));
+  REFERENCES tag_type (tag_type_id)
+);
 
 CREATE TABLE cover_tag (
   cover_id INT UNSIGNED NOT NULL,
-  tag_id INT UNSIGNED NOT NULL,
+  tag_id   INT UNSIGNED NOT NULL,
   PRIMARY KEY (cover_id, tag_id),
   CONSTRAINT fk_cover FOREIGN KEY (cover_id)
-  REFERENCES cover(cover_id),
+  REFERENCES cover (cover_id),
   CONSTRAINT fk_tag FOREIGN KEY (tag_id)
-  REFERENCES tag(tag_id));
+  REFERENCES tag (tag_id)
+);
 
 CREATE TABLE users (
-  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(25) NOT NULL UNIQUE,
+  id       INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(25)  NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
   question VARCHAR(255) NOT NULL,
-  answer VARCHAR(255) NOT NULL
+  answer   VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE cover_user (
   cover_id INT UNSIGNED NOT NULL,
-  user_id INT UNSIGNED NOT NULL,
-  amount INT UNSIGNED NOT NULL,
+  user_id  INT UNSIGNED NOT NULL,
+  amount   INT UNSIGNED NOT NULL,
   PRIMARY KEY (cover_id, user_id),
   CONSTRAINT fk_cover_user_cover FOREIGN KEY (cover_id)
-  REFERENCES cover(cover_id),
+  REFERENCES cover (cover_id),
   CONSTRAINT fk_cover_user_user FOREIGN KEY (user_id)
-  REFERENCES users(id));
+  REFERENCES users (id)
+);
 
 /*Default tags*/
 
@@ -101,12 +107,19 @@ INSERT INTO shelf (shelf, shelf_size) VALUES
 
 /* Shelf view */
 CREATE VIEW shelf_space (shelf_id, cover_amount, percentage_filled) AS
-  SELECT shelf_id, IFNULL(SUM(amount),0), IFNULL((SUM(amount)/shelf_size)*100,0)
-  FROM shelf LEFT JOIN cover USING (shelf_id)
+  SELECT
+    shelf_id,
+    IFNULL(SUM(amount), 0),
+    IFNULL((SUM(amount) / shelf_size) * 100, 0)
+  FROM shelf
+    LEFT JOIN cover USING (shelf_id)
   GROUP BY shelf_id;
 
 CREATE VIEW shelf_type_amount (shelf_id, tag, tag_amount) AS
-  SELECT shelf_id, tag, count(*)
+  SELECT
+    shelf_id,
+    tag,
+    count(*)
   FROM shelf
     LEFT JOIN cover USING (shelf_id)
     LEFT JOIN cover_tag USING (cover_id)
@@ -115,7 +128,9 @@ CREATE VIEW shelf_type_amount (shelf_id, tag, tag_amount) AS
   GROUP BY shelf_id, tag;
 
 CREATE VIEW shelf_type (shelf_id, tag) AS
-  SELECT a.shelf_id, a.tag
+  SELECT
+    a.shelf_id,
+    a.tag
   FROM shelf_type_amount a
     LEFT JOIN shelf_type_amount b
       ON a.shelf_id = b.shelf_id AND a.tag_amount < b.tag_amount

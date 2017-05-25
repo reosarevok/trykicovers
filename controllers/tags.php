@@ -1,5 +1,5 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT']."/trykicovers/system/database.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/trykicovers/system/database.php";
 
 $tags = array();
 

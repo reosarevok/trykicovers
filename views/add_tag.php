@@ -1,8 +1,7 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/add_tag.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/trykicovers/controllers/add_tag.php"; ?>
 
-<?php if (empty($_SESSION['user_id']))
-{
-header( "Location: login.php" );
+<?php if (empty($_SESSION['user_id'])) {
+    header("Location: login.php");
 }
 ?>
 
@@ -23,10 +22,10 @@ header( "Location: login.php" );
 
             <div class="form-group">
                 <label for="tag">Tag name</label>
-                <input class="form-control" type="text" name="tag" id="tag" required />
+                <input class="form-control" type="text" name="tag" id="tag" required/>
             </div>
 
             <button type="submit" class="btn btn-default">Enter</button>
         </form>
     </div>
- </div>
+</div>

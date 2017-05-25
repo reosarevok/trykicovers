@@ -1,4 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/trykicovers/controllers/shelf.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/trykicovers/controllers/shelf.php"; ?>
 
 <div class="row">
     <div class="col-xs-12">
@@ -27,13 +27,17 @@
                             </div>
                             <div class="input-group row">
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="amount-<?= $id ?>" data-cover-id="<?= $id ?>">
+                                    <button type="button" class="btn btn-danger btn-number" data-type="minus"
+                                            data-field="amount-<?= $id ?>" data-cover-id="<?= $id ?>">
                                         <span class="glyphicon glyphicon-minus"></span>
                                     </button>
                                 </span>
-                                                <input type="text" name="amount-<?= $id ?>" id="amount-<?= $id ?>" class="form-control input-number text-center" value="<?= $cover->amount ?>" min="0" readonly />
-                                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="amount-<?= $id ?>" data-cover-id="<?= $id ?>">
+                                <input type="text" name="amount-<?= $id ?>" id="amount-<?= $id ?>"
+                                       class="form-control input-number text-center" value="<?= $cover->amount ?>"
+                                       min="0" readonly/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-success btn-number" data-type="plus"
+                                            data-field="amount-<?= $id ?>" data-cover-id="<?= $id ?>">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </button>
                                 </span>
@@ -49,24 +53,24 @@
 </div>
 
 <script>
-    $('.btn-number').click(function(event){
+    $('.btn-number').click(function (event) {
         event.preventDefault();
 
         var fieldName = $(this).attr('data-field');
-        var type      = $(this).attr('data-type');
-        var cover_id  = $(this).attr('data-cover-id');
-        var input = $("input[name='"+fieldName+"");
+        var type = $(this).attr('data-type');
+        var cover_id = $(this).attr('data-cover-id');
+        var input = $("input[name='" + fieldName + "");
         var currentVal = parseInt(input.val());
         console.log(newVal, fieldName, cover_id);
         if (!isNaN(currentVal)) {
-            if(type == 'minus') {
+            if (type == 'minus') {
 
-                if(currentVal > input.attr('min')) {
+                if (currentVal > input.attr('min')) {
                     var newVal = currentVal - 1;
                     update_amount(newVal, fieldName, cover_id);
                 }
 
-            } else if(type == 'plus') {
+            } else if (type == 'plus') {
                 var newVal = currentVal + 1;
                 update_amount(newVal, fieldName, cover_id);
 
@@ -80,7 +84,7 @@
         $.ajax({
             type: "post",
             url: "system/update_amount.php",
-            data: { amount: amount, cover_id: cover_id }
+            data: {amount: amount, cover_id: cover_id}
         }).done(function (data) {
             $("#" + field + "").val(data);
         });

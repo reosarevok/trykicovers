@@ -1,17 +1,14 @@
 <?php
 require_once "database.php";
 
-try    {
+try {
     if (!empty($_POST)) {
         echo edit_existing_cover($_POST);
-    }
-    else {
+    } else {
         echo '<h4>Please add some data</h4>';
     }
-}
-catch(Exception $e)
-{
-    echo '<h4>'.$e->getMessage().'</h4>';
+} catch (Exception $e) {
+    echo '<h4>' . $e->getMessage() . '</h4>';
 }
 
 function edit_existing_cover($params)
@@ -89,5 +86,5 @@ function edit_existing_cover($params)
             add_tag_to_cover($tag, $cover_id);
         }
     }
-    header( "Location: ../cover.php?id=$cover_id" );
+    header("Location: ../cover.php?id=$cover_id");
 }
